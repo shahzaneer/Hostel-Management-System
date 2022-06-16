@@ -20,7 +20,8 @@ public class AdminOperations {
         collectionHostelites = new ArrayList<Hostelite>();
     }
 
-    //! Create for GUI
+    //! Creation of the DATA 
+
     public void addHostelite(Hostelite s) {
         ObjectOutputStream oos = null;
         // write to file
@@ -56,7 +57,8 @@ public class AdminOperations {
         }
     }
 
-    //! Read for GUI
+    //! Reading of the DATA
+
     public String viewAllProfiles() {
 
         ObjectInputStream oo = null;
@@ -108,19 +110,20 @@ public class AdminOperations {
 
     }
 
-    //! Search for GUI
+    //! Searching of DATA with different Aspects
+
     public String searchByName(String firstName) {
         StringBuilder details = new StringBuilder();
         boolean foundSome = false;
         ObjectInputStream oo = null;
         try {
-            oo = new ObjectInputStream(new FileInputStream("Students.ser"));
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
 
             while (true) {
 
                 // Reading object is below
-                Student s = (Student) oo.readObject();
-                if (s.getName().equalsIgnoreCase(Name)) {
+                Hostelite s = (Hostelite) oo.readObject();
+                if (s.getFirstName().equalsIgnoreCase(firstName)) {
                     details.append(s.toString());
                     foundSome = true;
                 }
@@ -164,13 +167,64 @@ public class AdminOperations {
         boolean foundSome = false;
         ObjectInputStream oo = null;
         try {
-            oo = new ObjectInputStream(new FileInputStream("Students.ser"));
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
 
             while (true) {
 
                 // Reading object is below
-                Student s = (Student) oo.readObject();
-                if (s.getName().equalsIgnoreCase(Name)) {
+                Hostelite s = (Hostelite) oo.readObject();
+                if (s.getHostelID().equalsIgnoreCase(hostelID)) {
+                    details.append(s.toString());
+                    foundSome = true;
+                    break;
+                }
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        catch (EOFException e) {
+
+        }
+
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                oo.close();
+
+            } catch (IOException e) {
+            }
+
+        }
+
+        if (!foundSome) {
+            return "No Such Hostel ID Found !";
+        }
+
+        return details.toString();
+
+    }
+
+    public String searchByYear(String year) {
+        StringBuilder details = new StringBuilder();
+        ObjectInputStream oo = null;
+        boolean foundSome = false;
+        try {
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
+
+            while (true) {
+
+                // Reading object is below
+                Hostelite s = (Hostelite) oo.readObject();
+                if (s.getRegistrationDateAndTime().getYear().equals(year)) {
                     details.append(s.toString());
                     foundSome = true;
                 }
@@ -202,25 +256,24 @@ public class AdminOperations {
         }
 
         if (!foundSome) {
-            return "No Student Found !";
+            return "No Data Against this year Found!";
         }
 
         return details.toString();
-
     }
-
-    public String searchByRoomType(String department) {
+    
+    public String searchByRoomType(String roomType) {
         StringBuilder details = new StringBuilder();
         ObjectInputStream oo = null;
         boolean foundSome = false;
         try {
-            oo = new ObjectInputStream(new FileInputStream("Students.ser"));
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
 
             while (true) {
 
                 // Reading object is below
-                Student s = (Student) oo.readObject();
-                if (s.getDepartment().getName().equalsIgnoreCase(department)) {
+                Hostelite s = (Hostelite) oo.readObject();
+                if (s.getRoom().getRoomType().equalsIgnoreCase(roomType)) {
                     details.append(s.toString());
                     foundSome = true;
                 }
@@ -258,23 +311,24 @@ public class AdminOperations {
         return details.toString();
     }
 
-    //! UPDATE for GUI
-    boolean updateInfo(String s, double newCGPA) {
+    
+    //! UPDATION of DATA with different Aspects
+
+
+    boolean updateRoom(String hostelID, String roomNo, String roomType) {
 
         boolean found = false;
-
-        // a.clear(); //clearing the list before adding objects
 
         ObjectInputStream oo = null;
         try {
 
-            oo = new ObjectInputStream(new FileInputStream("Students.ser"));
+            oo = new ObjectInputStream(new FileInputStream("hostelite.ser"));
 
             try {
                 while (true) {
 
-                    Student k = (Student) oo.readObject();
-                    a.add(k);
+                    Hostelite k = (Hostelite) oo.readObject();
+                    collectionHostelites.add(k);
                 }
             } catch (EOFException e) {
 
@@ -295,12 +349,31 @@ public class AdminOperations {
             }
         }
 
-        // firstly manipulating the desired object for updating the CGPA
+        // Manipulating the object for 
 
-        for (int i = 0; i < a.size(); i++) {
-            if (a.get(i).getName().equalsIgnoreCase(s)) {
+        for (int i = 0; i < collectionHostelites.size(); i++) {
+
+            if (collectionHostelites.get(i).getHostelID().equals(hostelID)) {
+
                 found = true;
-                a.get(i).setGPA(newCGPA);
+
+                collectionHostelites.get(i).getRoom().setRoomNo(roomNo);
+                collectionHostelites.get(i).getRoom().setRoomType(roomType);
+
+                if (roomType.equalsIgnoreCase("singleseater")) {
+                    collectionHostelites.get(i).getRoom().setRoomRent(12000);
+
+                }
+                else if (roomType.equalsIgnoreCase("biseater")) {
+                    collectionHostelites.get(i).getRoom().setRoomRent(10000);
+
+                }
+
+                else if (roomType.equalsIgnoreCase("triseater")) {
+                    collectionHostelites.get(i).getRoom().setRoomRent(8000);
+
+                }
+                
             }
         }
 
@@ -311,18 +384,17 @@ public class AdminOperations {
         int counter = 0;
 
         try {
-            for (int i = 0; i < a.size(); i++) {
+            for (int i = 0; i < collectionHostelites.size(); i++) {
                 // System.out.println("After Manipulation reading loop - size of arraylist"+ i);
                 if (counter > 0) {
                     // System.out.println("counter greater then 0");
                     oos = new MyObjectOutputStream(new FileOutputStream(f, true));
-                    oos.writeObject(a.get(i));
+                    oos.writeObject(collectionHostelites.get(i));
 
-                } 
-                else {
+                } else {
                     // System.out.println("counter is 0");
                     oos = new ObjectOutputStream(new FileOutputStream(f));
-                    oos.writeObject(a.get(i));
+                    oos.writeObject(collectionHostelites.get(i));
                     counter++;
                 }
             }
@@ -338,12 +410,262 @@ public class AdminOperations {
             e.printStackTrace();
         }
 
+        return found;
+
+    }
+
+    boolean updateParking(String hostelID, String vehicleType, String vehicleNumber) {
+
+        boolean found = false;
+
+        ObjectInputStream oo = null;
+        try {
+
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
+
+            try {
+                while (true) {
+
+                    Hostelite k = (Hostelite) oo.readObject();
+                    collectionHostelites.add(k);
+                }
+            } catch (EOFException e) {
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                oo.close();
+            } catch (IOException e) {
+
+            }
+        }
+
+        // firstly manipulating the object
+
+        for (int i = 0; i < collectionHostelites.size(); i++) {
+
+            if (collectionHostelites.get(i).getHostelID().equals(hostelID)) {
+                found = true;
+                // if vehicle type and vehicle number are null set it null
+                if (vehicleNumber.equals("null") || vehicleType.equals("null")) {
+                    collectionHostelites.get(i).getParking().setParkingFee(0);
+                }
+
+                collectionHostelites.get(i).getParking().setVehicleType(vehicleType);
+                collectionHostelites.get(i).getParking().setVehicleNumber(vehicleNumber);
+
+            }
+        }
+
+        //* now again writing the Arraylist Objects to the file. first time it will create the file again and only then it will append!
+        // file object
+        // f = new File("Students.ser");
+        ObjectOutputStream oos = null;
+        int counter = 0;
+
+        try {
+            for (int i = 0; i < collectionHostelites.size(); i++) {
+                if (counter > 0) {
+                    oos = new MyObjectOutputStream(new FileOutputStream(f, true));
+                    oos.writeObject(collectionHostelites.get(i));
+
+                } else {
+                    // System.out.println("counter is 0");
+                    oos = new ObjectOutputStream(new FileOutputStream(f));
+                    oos.writeObject(collectionHostelites.get(i));
+                    counter++;
+                }
+            }
+
+            // For closing File
+
+            if (oos != null) {
+                oos.close();
+            }
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return found;
 
     }
 
-    //! DELETE for GUI
+    boolean setOffDaysInMess(String hostelID, int offDays) {
+
+        boolean found = false;
+
+        ObjectInputStream oo = null;
+        try {
+
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
+
+            try {
+                while (true) {
+
+                    Hostelite k = (Hostelite) oo.readObject();
+                    collectionHostelites.add(k);
+                }
+            } catch (EOFException e) {
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                oo.close();
+            } catch (IOException e) {
+
+            }
+        }
+
+        // firstly manipulating the object
+
+        for (int i = 0; i < collectionHostelites.size(); i++) {
+            if (collectionHostelites.get(i).getHostelID().equals(hostelID)) {
+                found = true;
+                collectionHostelites.get(i).getMess().setOffDays(offDays);
+
+            }
+        }
+
+        //* now again writing the Arraylist Objects to the file. first time it will create the file again and only then it will append!
+        // file object
+        // f = new File("Students.ser");
+        ObjectOutputStream oos = null;
+        int counter = 0;
+
+        try {
+            for (int i = 0; i < collectionHostelites.size(); i++) {
+                // System.out.println("After Manipulation reading loop - size of arraylist"+ i);
+                if (counter > 0) {
+                    // System.out.println("counter greater then 0");
+                    oos = new MyObjectOutputStream(new FileOutputStream(f, true));
+                    oos.writeObject(collectionHostelites.get(i));
+
+                } else {
+                    // System.out.println("counter is 0");
+                    oos = new ObjectOutputStream(new FileOutputStream(f));
+                    oos.writeObject(collectionHostelites.get(i));
+                    counter++;
+                }
+            }
+
+            // For closing File
+
+            if (oos != null) {
+                oos.close();
+            }
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return found;
+
+    }
+
+    boolean updateName(String hostelID, String firstName, String lastName) {
+
+        boolean found = false;
+
+        ObjectInputStream oo = null;
+        try {
+
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
+
+            try {
+                while (true) {
+
+                    Hostelite k = (Hostelite) oo.readObject();
+                    collectionHostelites.add(k);
+                }
+            } catch (EOFException e) {
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                oo.close();
+            } catch (IOException e) {
+
+            }
+        }
+
+        // firstly manipulating the object
+
+        for (int i = 0; i < collectionHostelites.size(); i++) {
+            if (collectionHostelites.get(i).getHostelID().equals(hostelID)) {
+
+                found = true;
+                collectionHostelites.get(i).setFirstName(firstName);
+                collectionHostelites.get(i).setLastName(lastName);
+            }
+        }
+
+        //* now again writing the Arraylist Objects to the file. first time it will create the file again and only then it will append!
+        // file object
+        // f = new File("Students.ser");
+        ObjectOutputStream oos = null;
+        int counter = 0;
+
+        try {
+            for (int i = 0; i < collectionHostelites.size(); i++) {
+                // System.out.println("After Manipulation reading loop - size of arraylist"+ i);
+                if (counter > 0) {
+                    // System.out.println("counter greater then 0");
+                    oos = new MyObjectOutputStream(new FileOutputStream(f, true));
+                    oos.writeObject(collectionHostelites.get(i));
+
+                } else {
+                    // System.out.println("counter is 0");
+                    oos = new ObjectOutputStream(new FileOutputStream(f));
+                    oos.writeObject(collectionHostelites.get(i));
+                    counter++;
+                }
+            }
+
+            // For closing File
+
+            if (oos != null) {
+                oos.close();
+            }
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return found;
+
+    }
+    
+    
+    //! Deletion of DATA 
+
     boolean removeHostelite(String hostelID) {
 
         boolean found = false;
@@ -356,7 +678,7 @@ public class AdminOperations {
                 while (true) {
 
                     Hostelite s = (Hostelite) oo.readObject();
-                    a.add(s);
+                    collectionHostelites.add(s);
 
                 }
             } catch (EOFException e) {
@@ -381,20 +703,20 @@ public class AdminOperations {
             // write to file
             int counter = 0;
 
-            if (a.size() > 0) {
-                for (int i = 0; i < a.size(); i++) {
+            if (collectionHostelites.size() > 0) {
+                for (int i = 0; i < collectionHostelites.size(); i++) {
 
                     System.out.println("Writing again to the file");
 
                     if (counter > 0) {
                         // when you are running it for the second and afterwards iterations you will append the file
                         oos = new MyObjectOutputStream(new FileOutputStream(f, true));
-                        oos.writeObject(a.get(i));
+                        oos.writeObject(collectionHostelites.get(i));
 
                     } else {
                         // for the first time you will create a new file
                         oos = new ObjectOutputStream(new FileOutputStream(f));
-                        oos.writeObject(a.get(i));
+                        oos.writeObject(collectionHostelites.get(i));
                         counter++;
                     }
 
@@ -407,7 +729,7 @@ public class AdminOperations {
                 }
 
             }
-            else if (a.size() == 0) {
+            else if (collectionHostelites.size() == 0) {
                 // System.out.println("File deleting");
                 f.delete();
                 // System.out.println("File deleted");
@@ -422,6 +744,86 @@ public class AdminOperations {
         return found;
 
     }
+
+    boolean removeHostelite(String firstName , String secondName ) {
+
+        boolean found = false;
+        ObjectInputStream oo = null;
+
+        try {
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
+
+            try {
+                while (true) {
+
+                    Hostelite s = (Hostelite) oo.readObject();
+                    collectionHostelites.add(s);
+
+                }
+            } catch (EOFException e) {
+                // Move to the next line broda
+            }
+            // now we will move sequentially..
+
+            oo.close();
+
+            // removing the specified object from the arraylist
+            for (int i = 0; i < a.size(); i++) {
+                if (collectionHostelites.get(i).getFirstName().equalsIgnoreCase(firstName) && collectionHostelites.get(i).getLastName().equalsIgnoreCase(secondName)) {
+                    found = true;
+                    a.remove(i);
+                }
+            }
+
+
+            // now again writing the Arraylist objects in the file first time we will create a new file and then we will append
+            // Object for writing class (ObjectOutputStream)
+            ObjectOutputStream oos = null;
+            // write to file
+            int counter = 0;
+
+            if (collectionHostelites.size() > 0) {
+                for (int i = 0; i < collectionHostelites.size(); i++) {
+
+                    System.out.println("Writing again to the file");
+
+                    if (counter > 0) {
+                        // when you are running it for the second and afterwards iterations you will append the file
+                        oos = new MyObjectOutputStream(new FileOutputStream(f, true));
+                        oos.writeObject(collectionHostelites.get(i));
+
+                    } else {
+                        // for the first time you will create a new file
+                        oos = new ObjectOutputStream(new FileOutputStream(f));
+                        oos.writeObject(collectionHostelites.get(i));
+                        counter++;
+                    }
+
+                }
+
+                // For closing File
+
+                if (oos != null) {
+                    oos.close();
+                }
+
+            }
+            else if (collectionHostelites.size() == 0) {
+                // System.out.println("File deleting");
+                f.delete();
+                // System.out.println("File deleted");
+            }
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return found;
+
+    }
+
 
     
     

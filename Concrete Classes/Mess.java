@@ -1,4 +1,6 @@
-public class Mess {
+import java.io.Serializable;
+
+public class Mess implements Serializable{
     private double messBill;
 
 
@@ -18,9 +20,16 @@ public class Mess {
     }
 
     // adding visitors to mess
-    public void addVisitors(double visitors , double days) {
+    public void addVisitors(double visitors, double days) {
         for (int i = 0; i < days; i++) {
             this.messBill += visitors * 200;
+        }
+    }
+    
+    // off days for mess
+    public void offDays(double days) {
+        for (int i = 0; i < days; i++) {
+            this.messBill -= 200;
         }
     }
 

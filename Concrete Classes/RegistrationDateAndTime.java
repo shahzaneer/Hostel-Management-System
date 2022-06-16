@@ -1,8 +1,9 @@
 import java.time.LocalTime;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
-public class RegistrationDateAndTime {
+public class RegistrationDateAndTime implements Serializable{
     
     private String currentDateString;
     private String currentTimeString;
@@ -19,22 +20,50 @@ public class RegistrationDateAndTime {
 
         // Concatenating the local Data and Time
         currentDateString = month + " " + day + " " + year;
-        if(LocalTime.now().getHour() > 12) {
-            currentTimeString = (Integer.parseInt(hour) -12) +":"+ minute+ ":" + second + " PM";
-        }
-        else {
+        if (LocalTime.now().getHour() > 12) {
+            currentTimeString = (Integer.parseInt(hour) - 12) + ":" + minute + ":" + second + " PM";
+        } else {
             currentTimeString = hour + minute + second + " AM";
         }
     }
+    
+    public String getCurrentDateString() {
+        return this.currentDateString;
+    }
+
+    public String getCurrentTimeString() {
+        return this.currentTimeString;
+    }
+
+    public String getMonth() {
+        return this.month;
+    }
+
+    public String getDay() {
+        return this.day;
+    }
+
+
+    public String getYear() {
+        return this.year;
+    }
+
+    public String getHour() {
+        return this.hour;
+    }
+
+    public String getMinute() {
+        return this.minute;
+    }
+
+    public String getSecond() {
+        return this.second;
+    }
+
 
     public String toString() {
         return "Registration Date : " + currentDateString + "\n" +
                 "Registration Time : " + currentTimeString;
-    }
-
-    public static void main(String[] args) {
-        RegistrationDateAndTime registrationDateAndTime = new RegistrationDateAndTime();
-        System.out.println(registrationDateAndTime);
     }
 
 }

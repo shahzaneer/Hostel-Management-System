@@ -1,4 +1,6 @@
-public class Parking {
+import java.io.Serializable;
+
+public class Parking implements Serializable {
     private String vehicleType;
     private String vehicleNumber;
     private double parkingBill;

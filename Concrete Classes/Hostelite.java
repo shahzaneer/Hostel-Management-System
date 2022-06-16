@@ -1,4 +1,6 @@
-public class Hostelite extends Person {
+import java.io.Serializable;
+
+public class Hostelite extends Person implements Serializable {
 
     private String hostelID; // unique for each hostelite
     private String password; // password for each hostelite
@@ -25,6 +27,7 @@ public class Hostelite extends Person {
         this.mess = mess;
         this.totalBill = totalBill;
         this.registrationDateAndTime = registrationDateAndTime;
+        this.complain = "";
     }
 
     public String getHostelID() {
@@ -37,6 +40,10 @@ public class Hostelite extends Person {
 
     public String getPassword() {
         return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Room getRoom() {
@@ -88,6 +95,7 @@ public class Hostelite extends Person {
     }
 
 
+
     // add complains if you want to do
     public void setComplain(String complain) {
         this.complain = complain;
@@ -95,7 +103,14 @@ public class Hostelite extends Person {
 
     // get that complain
     public String getComplain() {
-        return this.complain;
+        if (this.complain == null) {
+            return "No Complain";
+        }
+        else {
+            return "Name : " + this.getFirstName() + " " + this.getLastName() + "\n"
+                    + "Hostel ID : " + this.getHostelID() + "\n"
+                    + "Complain : " + this.complain + "\n";
+        }
     }
 
 

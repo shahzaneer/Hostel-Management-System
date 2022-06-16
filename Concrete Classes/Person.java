@@ -1,3 +1,4 @@
+
 public class Person {
     private String firstName;
     private String lastName;
@@ -54,7 +55,7 @@ public class Person {
             "First Name = " + getFirstName() + "\n" +
             "Last Name = " + getLastName() + "\n" +
             "Email = " + getEmail() + "\n" +
-            "Phone No = " + getPhoneNo() + "";
+            "Phone No = " + getPhoneNo() + "\n";
     }
 
 

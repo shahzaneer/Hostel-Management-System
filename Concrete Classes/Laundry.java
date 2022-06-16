@@ -1,4 +1,7 @@
-public class Laundry {
+import java.io.Serializable;
+
+public class Laundry implements Serializable 
+{
     private double laundryBill;
     private double totalGarmets;
 
@@ -44,8 +47,9 @@ public class Laundry {
     @Override
     public String toString() {
         return
-            "Laundry Bill = " + getLaundryBill() + "\n" +
-            "Total Garmets = " + getTotalGarmets();
+            " Laundry Bill = " + getLaundryBill() + "\n" +
+            " Total Garmets = " + getTotalGarmets() + "\n" +
+            " Laundry Bill = " + getLaundryBill() + "\n"; 
     }
 
 }
