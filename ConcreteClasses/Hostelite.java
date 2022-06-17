@@ -1,7 +1,6 @@
 package ConcreteClasses;
-import java.io.Serializable;
 
-public class Hostelite extends Person implements Serializable {
+public class Hostelite extends Person {
 
     private String hostelID; // unique for each hostelite
     private String password; // password for each hostelite
