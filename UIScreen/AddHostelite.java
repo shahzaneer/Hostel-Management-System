@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
 public class AddHostelite extends JFrame implements ActionListener {
     private JLabel lHostelID , lpassword, lFirstName , lSecondName , lEmail, lPhoneNumber ,
             lRoomNo, lRoomType, lVehicleType, lVehicleNumber;
@@ -78,18 +79,22 @@ public class AddHostelite extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == Add) {
+
+            // getting input from the user
             String hostelID = tHostelID.getText();
             String password = tpassword.getText();
             String firstName = tFirstName.getText();
             String secondName = tSecondName.getText();
             String email = tEmail.getText();
             String phoneNumber = tPhoneNumber.getText();
-            String roomNo = tRoomNo.getText();
+            int roomNo = Integer.parseInt(tRoomNo.getText());
             String roomType = tRoomType.getText();
             String vehicleType = tVehicleType.getText();
             String vehicleNumber = tVehicleNumber.getText();
+            // making Objects
+            
+            Hostelite newHostelite = new Hostelite(hostelID, password, firstName, secondName, email, phoneNumber, roomNo, roomType, vehicleType, vehicleNumber);
 
-            //adding logic here
             JOptionPane.showMessageDialog(null, "Hostelite Added Successfully");
 
         }

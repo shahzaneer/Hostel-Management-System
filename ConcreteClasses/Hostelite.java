@@ -1,3 +1,4 @@
+package ConcreteClasses;
 import java.io.Serializable;
 
 public class Hostelite extends Person implements Serializable {

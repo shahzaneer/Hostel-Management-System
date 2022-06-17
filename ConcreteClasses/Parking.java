@@ -1,3 +1,5 @@
+package ConcreteClasses;
+
 import java.io.Serializable;
 
 public class Parking implements Serializable {
