@@ -31,8 +31,10 @@ public class Complaints extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == seeComplain) {
-            JOptionPane.showMessageDialog(null, "Boss bht mushkil horhi hai yahan per");
+        if (e.getSource() == seeComplain) {
+            HosteliteOperations h = new HosteliteOperations();
+            String complains = h.getAllComplains();
+            JOptionPane.showMessageDialog(null, complains);
 
         }
         else if(e.getSource() == back) {

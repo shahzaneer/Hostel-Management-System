@@ -7,7 +7,9 @@ import ConcreteClasses.*;
 import FileOperations.*;
 
 public class GetProfile extends JFrame implements ActionListener {
-    
+
+    JLabel hostelIDl;
+    JTextField hostelIDt;
     JButton profileInfo, back;
 
     public GetProfile() {
@@ -15,11 +17,15 @@ public class GetProfile extends JFrame implements ActionListener {
         this.setSize(600, 600);
         this.setForeground(Color.BLACK);
         this.setVisible(true);
-        this.setLayout(new GridLayout(2, 1));
+        this.setLayout(new GridLayout(2, 2));
 
+        hostelIDl = new JLabel("Hostel ID");
+        hostelIDt = new JTextField();
         profileInfo = new JButton("Profile Info");
         back = new JButton("Back");
 
+        this.add(hostelIDl);
+        this.add(hostelIDt);
         this.add(profileInfo);
         this.add(back);
 
@@ -36,9 +42,11 @@ public class GetProfile extends JFrame implements ActionListener {
             this.dispose();
             new Hostelite();
         }
-        else if(e.getSource() == profileInfo) {
-            
-            JOptionPane.showMessageDialog(null, "Shahzaneer AHMED");
+        else if (e.getSource() == profileInfo) {
+            HosteliteOperations h = new HosteliteOperations();
+            String hostelID = hostelIDt.getText();
+            String profile = h.getProfileInfo(hostelID);
+            JOptionPane.showMessageDialog(null,profile);
         }
         
     }

@@ -38,8 +38,18 @@ public class DeleteByID extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == delete) {
-            this.dispose();
+        if (e.getSource() == delete) {
+            AdminOperations ao = new AdminOperations();
+            String hostelID = hostelIDText.getText();
+
+            boolean found = ao.removeHostelite(hostelID);
+
+            if (found) {
+                JOptionPane.showMessageDialog(null, "Hostelite deleted successfully");
+            } 
+            else {
+                JOptionPane.showMessageDialog(null, "Hostelite not found");
+            }
         }
         else if(e.getSource() == back) {
             this.dispose();

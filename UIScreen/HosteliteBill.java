@@ -38,8 +38,10 @@ public class HosteliteBill extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == search) {
-            JOptionPane.showMessageDialog(null, "Bill is: ");
-            
+            String hostelID = hostelIDText.getText();
+            AdminInsightsAndBills ad = new AdminInsightsAndBills();
+            String details = ad.totalIncomeOfHostel();
+            JOptionPane.showMessageDialog(null, details);
         }
         else if(e.getSource() == back) {
             this.dispose();

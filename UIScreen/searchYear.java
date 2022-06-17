@@ -37,9 +37,14 @@ public class searchYear extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == search) {
-            this.dispose();
-            new searchYear();
+        if (e.getSource() == search) {
+            AdminOperations ao = new AdminOperations();
+            String year = yearText.getText();
+
+            String details = ao.searchByYear(year);
+
+            JOptionPane.showMessageDialog(null, details);
+            
         }
         else if(e.getSource() == back) {
             this.dispose();

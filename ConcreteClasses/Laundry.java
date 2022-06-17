@@ -50,8 +50,7 @@ public class Laundry implements Serializable
     public String toString() {
         return
             " Laundry Bill = " + getLaundryBill() + "\n" +
-            " Total Garmets = " + getTotalGarmets() + "\n" +
-            " Laundry Bill = " + getLaundryBill() + "\n"; 
+                    " Total Garmets = " + getTotalGarmets() + "\n";
     }
 
 }

@@ -52,8 +52,21 @@ public class AddVisitorToMess extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == update) {
-            JOptionPane.showMessageDialog(null, "Visitors Added to Mess !");
-            this.dispose();
+            HosteliteOperations ho = new HosteliteOperations();
+            String hostelID = tHostelID.getText();
+            int visitors = Integer.parseInt(visitorsText.getText());
+            int days = Integer.parseInt(daysText.getText());
+
+            boolean updated = ho.addVisitorToMess(hostelID, visitors, days);
+
+            if(updated) {
+                JOptionPane.showMessageDialog(null, "Visitors added to Mess!");
+                this.dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Hostel ID was not found!");
+                this.dispose();
+            }
         }
         else if(e.getSource() == back) {
             this.dispose();

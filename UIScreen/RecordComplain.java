@@ -48,9 +48,19 @@ public class RecordComplain extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == update) {
-            JOptionPane.showMessageDialog(null, "Complain Registered !");
-            this.dispose();
+            HosteliteOperations ho = new HosteliteOperations();
+            String hostelID = tHostelID.getText();
+            String complain = complainText.getText();
+
+            boolean updated = ho.recordComplain(hostelID, complain);
+
+            if (updated) {
+                JOptionPane.showMessageDialog(null, "Complain Recorded !");
+            } else {
+                JOptionPane.showMessageDialog(null, "Complain Not Recorded");
+            }
         }
+        
         else if(e.getSource() == back) {
             this.dispose();
             new Hostelite();

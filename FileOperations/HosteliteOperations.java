@@ -34,8 +34,8 @@ public class HosteliteOperations {
         collectionHostelites = new ArrayList<Hostelite>();
     }
 
-    public String getProfileInfo(String HostelID, String Password) {
-        
+    public String getProfileInfo(String HostelID) {
+
         StringBuilder details = new StringBuilder();
 
         ObjectInputStream oo = null;
@@ -47,7 +47,7 @@ public class HosteliteOperations {
 
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
-                if (s.getHostelID().equals(HostelID) && s.getPassword().equals(Password)) {
+                if (s.getHostelID().equals(HostelID)) {
                     details.append(s.toString());
                 }
             }
@@ -78,6 +78,62 @@ public class HosteliteOperations {
         }
 
         return details.toString();
+
+    }
+
+    public String getAllComplains() {
+
+        ObjectInputStream oo = null;
+        StringBuilder details = new StringBuilder();
+
+        if (!f.exists())
+        return "File Not Found No Record!";
+
+    if (f.exists()) {
+        try {
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
+
+            while (true) {
+
+                // Reading object is below
+                Hostelite s = (Hostelite) oo.readObject();
+                if (s.getComplain() != null) {
+                    details.append(s.getComplain() + "\n");
+                }
+                }
+            }
+
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        catch (EOFException e) {
+
+        }
+
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                oo.close();
+            } catch (IOException e) {
+            }
+
+        }
+
+        String s = details.toString();
+
+        return s;
+
+    }
+
+    return "File Not Found No Record!";
 
     }
 

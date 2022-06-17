@@ -38,8 +38,12 @@ public class searchHostelID extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == search) {
-            this.dispose();
-            
+            AdminOperations ao = new AdminOperations();
+            String hostelID = hostelIDText.getText();
+
+            String details = ao.searchByHostelID(hostelID);
+
+            JOptionPane.showMessageDialog(null, details);
         }
         else if(e.getSource() == back) {
             this.dispose();

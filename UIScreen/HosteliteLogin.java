@@ -46,9 +46,8 @@ public class HosteliteLogin extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // System.out.println("IN hostelite ActionFunction");
         if (e.getSource() == LoginButton) {
-            // System.out.println("Login triggered");
+
             String hostelID = hostelIDText.getText();
             String password = passwordText.getText();
 

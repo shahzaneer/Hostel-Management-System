@@ -7,8 +7,8 @@ import ConcreteClasses.*;
 import FileOperations.*;
 
 public class searchName extends JFrame implements ActionListener {
-    private JLabel firstName, lastName;
-    private JTextField firstNameText, lastNameText;
+    private JLabel firstName;
+    private JTextField firstNameText;
     private JButton search;
     private JButton back;
 
@@ -18,19 +18,15 @@ public class searchName extends JFrame implements ActionListener {
         this.setForeground(Color.BLACK);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout(3, 2));
+        this.setLayout(new GridLayout(2, 2));
 
         firstName = new JLabel("First Name");
-        lastName = new JLabel("Last Name");
         firstNameText = new JTextField();
-        lastNameText = new JTextField();
         search = new JButton("Search");
         back = new JButton("Back");
 
         this.add(firstName);
         this.add(firstNameText);
-        this.add(lastName);
-        this.add(lastNameText);
         this.add(search);
         this.add(back);
 
@@ -42,8 +38,13 @@ public class searchName extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == search) {
-            this.dispose();
-            new searchName();
+            String firstName = firstNameText.getText();
+
+            AdminOperations ao = new AdminOperations();
+
+            String details = ao.searchByName(firstName);
+
+            JOptionPane.showMessageDialog(null, details);
         }
         else if(e.getSource() == back) {
             this.dispose();

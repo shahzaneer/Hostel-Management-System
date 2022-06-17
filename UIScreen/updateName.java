@@ -49,7 +49,22 @@ public class updateName extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == update) {
-            this.dispose();
+            AdminOperations ao = new AdminOperations();
+            String hostelID = tHostelID.getText();
+            String firstName = tFirstName.getText();
+            String secondName = tSecondName.getText();
+
+            boolean found = ao.updateName(hostelID, firstName, secondName);
+
+            if (found) {
+                JOptionPane.showMessageDialog(this, "Name updated successfully");
+            } else {
+                JOptionPane.showMessageDialog(this, "No Hostel ID not found");
+            }
+            
+
+
+
             
         }
         else if(e.getSource() == back) {

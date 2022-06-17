@@ -17,16 +17,15 @@ public class Hostelite extends Person implements Serializable {
     public Hostelite() {
     }
 
-    public Hostelite(String firstName, String lastName, String email , String phoneNo, String hostelID, String password, Room room, Laundry laundry, Parking parking, Mess mess,
-            double totalBill, RegistrationDateAndTime registrationDateAndTime) {
+    public Hostelite(String firstName, String lastName, String email , String phoneNo, String hostelID, String password, Room room, Laundry laundry, Parking parking, Mess mess, RegistrationDateAndTime registrationDateAndTime) {
         super(firstName, lastName, email, phoneNo);
+        System.out.println(firstName);
         this.hostelID = hostelID;
         this.password = password;
         this.room = room;
         this.laundry = laundry;
         this.parking = parking;
         this.mess = mess;
-        this.totalBill = totalBill;
         this.registrationDateAndTime = registrationDateAndTime;
         this.complain = "";
     }
@@ -106,28 +105,31 @@ public class Hostelite extends Person implements Serializable {
     public String getComplain() {
         if (this.complain == null) {
             return "No Complain";
-        }
-        else {
+        } else {
             return "Name : " + this.getFirstName() + " " + this.getLastName() + "\n"
                     + "Hostel ID : " + this.getHostelID() + "\n"
                     + "Complain : " + this.complain + "\n";
         }
     }
 
+    public double totalBillOfHostelite() {
+        return this.getRoom().getRoomRent() + this.getLaundry().getLaundryBill() + this.getParking().getParkingBill() + this.getMess().getMessBill();
+    }
+
 
     @Override
     public String toString() {
         return
-            "----------------------------------------------------------"+
+            "----------------------------------------------------------\n"+
             super.toString() +
             "Hostel ID = " + getHostelID() + "\n" +
             "Room = " + getRoom().toString() + "\n" +
-            "Laundry = " + getLaundry().toString() + "\n" +
+            getLaundry().toString() + "\n" +
             "Parking = " + getParking().toString() + "\n" +
-            "Mess = " + getMess().toString() + "\n" +
-            "Total Bill " + getTotalBill() + "\n" +
+            getMess().toString() + "\n" +
+            "Total Bill " + this.totalBillOfHostelite() + "\n" +
             getRegistrationDateAndTime().toString() + "\n" +
-            "----------------------------------------------------------";
+            "----------------------------------------------------------\n";
     }
 
 

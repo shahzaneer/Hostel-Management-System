@@ -37,9 +37,13 @@ public class searchRoomType extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == search) {
-            this.dispose();
-            new searchRoomType();
+        if (e.getSource() == search) {
+            String roomType = roomTypeText.getText();
+            AdminOperations ao = new AdminOperations();
+
+            String details = ao.searchByRoomType(roomType);
+
+            JOptionPane.showMessageDialog(null, details);
         }
         else if(e.getSource() == back) {
             this.dispose();

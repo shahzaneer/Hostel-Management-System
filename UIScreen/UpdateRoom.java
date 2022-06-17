@@ -49,8 +49,19 @@ public class UpdateRoom extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == update) {
-            this.dispose();
-            
+            String hostelID = tHostelID.getText();
+            String roomNo = roomNoText.getText();
+            String roomType = roomTypeText.getText();
+
+            AdminOperations ao = new AdminOperations();
+            boolean found = ao.updateRoom(hostelID, roomNo, roomType);
+
+            if (found) {
+                JOptionPane.showMessageDialog(null, "Room updated successfully");
+            } 
+            else {
+                JOptionPane.showMessageDialog(null, "No such ID Found ");
+            }
         }
         else if(e.getSource() == back) {
             this.dispose();

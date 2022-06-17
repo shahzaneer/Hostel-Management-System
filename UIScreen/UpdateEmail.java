@@ -47,8 +47,17 @@ public class UpdateEmail extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == update) {
-            JOptionPane.showMessageDialog(null, "Email Updated !");
-            this.dispose();
+            String hostelID = tHostelID.getText();
+            String email = emailText.getText();
+
+            HosteliteOperations ho = new HosteliteOperations();
+            boolean updated = ho.updateEmail(hostelID, email);
+
+            if (updated) {
+                JOptionPane.showMessageDialog(null, "Email Updated");
+            } else {
+                JOptionPane.showMessageDialog(null, "Email Not Updated");
+            }
         }
         else if(e.getSource() == back) {
             this.dispose();

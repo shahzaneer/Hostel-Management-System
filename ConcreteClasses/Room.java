@@ -10,10 +10,17 @@ public class Room implements Serializable{
     public Room() {
     }
 
-    public Room(String roomNo, String roomType , double roomRent) {
+    public Room(String roomNo, String roomType) {
         this.roomNo = roomNo;
         this.roomType = roomType;
-        this.roomRent = roomRent;
+        
+        if (roomType.equalsIgnoreCase("singleseator")) {
+            this.roomRent = 12000;
+        } else if (roomType.equalsIgnoreCase("biseator")) {
+            this.roomRent = 10000;
+        } else if (roomType.equalsIgnoreCase("triseator")) {
+            this.roomRent = 8000;
+        }
     }
 
     public String getRoomNo() {

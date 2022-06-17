@@ -49,7 +49,18 @@ public class UpdateParking extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == update) {
-            this.dispose();
+            String hostelId = tHostelID.getText();
+            String vehicleType = vehicleTypeText.getText();
+            String vehicleNumber = vehicleNumberText.getText();
+
+            AdminOperations ao = new AdminOperations();
+            boolean found = ao.updateParking(hostelId, vehicleType, vehicleNumber);
+
+            if (found) {
+                JOptionPane.showMessageDialog(null, "Parking updated successfully");
+            } else {
+                JOptionPane.showMessageDialog(null, "No Hostel ID not found");
+            }
             
         }
         else if(e.getSource() == back) {

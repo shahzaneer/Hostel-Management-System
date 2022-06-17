@@ -45,8 +45,18 @@ public class AddGarments extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == update) {
-            JOptionPane.showMessageDialog(null, "Garments Limit Updated");
-            this.dispose();
+            HosteliteOperations ho = new HosteliteOperations();
+            String hostelID = tHostelID.getText();
+            double newGarments = Double.parseDouble( newGarmentsText.getText());
+            boolean updated = ho.addExtraGarmetsToLaundry(hostelID, newGarments);
+            if(updated) {
+                JOptionPane.showMessageDialog(null, "Garments Limit updated!");
+                this.dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Hostel ID was not found!");
+                this.dispose();
+            }
         }
         else if(e.getSource() == back) {
             this.dispose();

@@ -43,7 +43,20 @@ public class DeleteByName extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == delete) {
-            this.dispose();
+            String firstName = firstNameText.getText();
+            String lastName = lastNameText.getText();
+
+            AdminOperations ao = new AdminOperations();
+
+            boolean deleted = ao.removeHostelite(firstName, lastName);
+            
+            if(deleted) {
+                JOptionPane.showMessageDialog(null, "Hostelite deleted successfully");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Hostelite not found");
+            }
+            
         }
         else if(e.getSource() == back) {
             this.dispose();

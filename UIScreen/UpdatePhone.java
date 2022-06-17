@@ -47,9 +47,19 @@ public class UpdatePhone extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == update) {
-            JOptionPane.showMessageDialog(null, "Phone Number Updated");
-            this.dispose();
+            String hostelID = tHostelID.getText();
+            String phoneNumber = phoneNumberText.getText();
+
+            HosteliteOperations ho = new HosteliteOperations();
+            boolean updated = ho.updatePhoneNumber(hostelID, phoneNumber);
+
+            if (updated) {
+                JOptionPane.showMessageDialog(null, "Phone Number Updated");
+            } else {
+                JOptionPane.showMessageDialog(null, "Phone Number Not Updated");
+            }
         }
+        
         else if(e.getSource() == back) {
             this.dispose();
             new Hostelite();

@@ -105,7 +105,9 @@ public class AdminOperations {
 
         }
 
-        return details.toString();
+        String s = details.toString();
+
+        return s;
 
     }
 
@@ -123,7 +125,6 @@ public class AdminOperations {
             oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
 
             while (true) {
-
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
                 if (s.getFirstName().equalsIgnoreCase(firstName)) {
@@ -161,7 +162,9 @@ public class AdminOperations {
             return "No Student Found !";
         }
 
-        return details.toString();
+        String s = details.toString();
+
+        return s;
 
     }
 
@@ -318,7 +321,7 @@ public class AdminOperations {
     //! UPDATION of DATA with different Aspects
 
 
-    boolean updateRoom(String hostelID, String roomNo, String roomType) {
+    public boolean updateRoom(String hostelID, String roomNo, String roomType) {
 
         boolean found = false;
 
@@ -417,7 +420,7 @@ public class AdminOperations {
 
     }
 
-    boolean updateParking(String hostelID, String vehicleType, String vehicleNumber) {
+    public boolean updateParking(String hostelID, String vehicleType, String vehicleNumber) {
 
         boolean found = false;
 
@@ -503,7 +506,7 @@ public class AdminOperations {
 
     }
 
-    boolean setOffDaysInMess(String hostelID, int offDays) {
+    public boolean setOffDaysInMess(String hostelID, int offDays) {
 
         boolean found = false;
 
@@ -584,7 +587,7 @@ public class AdminOperations {
 
     }
 
-    boolean updateName(String hostelID, String firstName, String lastName) {
+    public boolean updateName(String hostelID, String firstName, String lastName) {
 
         boolean found = false;
 
@@ -669,7 +672,7 @@ public class AdminOperations {
     
     //! Deletion of DATA 
 
-    boolean removeHostelite(String hostelID) {
+    public boolean removeHostelite(String hostelID) {
 
         boolean found = false;
         ObjectInputStream oo = null;
@@ -748,7 +751,7 @@ public class AdminOperations {
 
     }
 
-    boolean removeHostelite(String firstName , String secondName ) {
+    public boolean removeHostelite(String firstName , String secondName ) {
 
         boolean found = false;
         ObjectInputStream oo = null;

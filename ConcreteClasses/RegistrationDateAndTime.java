@@ -22,10 +22,12 @@ public class RegistrationDateAndTime implements Serializable{
 
         // Concatenating the local Data and Time
         currentDateString = month + " " + day + " " + year;
+        
         if (LocalTime.now().getHour() > 12) {
             currentTimeString = (Integer.parseInt(hour) - 12) + ":" + minute + ":" + second + " PM";
-        } else {
-            currentTimeString = hour + minute + second + " AM";
+        } 
+        else {
+            currentTimeString = hour +":" + minute + ":" + second + " AM";
         }
     }
     

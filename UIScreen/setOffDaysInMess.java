@@ -44,9 +44,19 @@ public class setOffDaysInMess extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == update) {
-            this.dispose();
+        if (e.getSource() == update) {
             
+            String hostelID = tHostelID.getText();
+            int offdays = Integer.parseInt(offdaysText.toString());
+            AdminOperations ao = new AdminOperations();
+            boolean found = ao.setOffDaysInMess(hostelID, offdays);
+
+            if (found) {
+                JOptionPane.showMessageDialog(null, "Off days updated successfully");
+            } else {
+                JOptionPane.showMessageDialog(null, "no such Hostel ID Found");
+            }
+
         }
         else if(e.getSource() == back) {
             this.dispose();

@@ -7,7 +7,8 @@ import ConcreteClasses.*;
 import FileOperations.*;
 
 public class BillInfo extends JFrame implements ActionListener {
-
+    private JLabel hostelIDLabel;
+    private JTextField hostelIDText;
     private JButton totalIncome , searchHosteliteBill;
     private JButton back;
 
@@ -18,12 +19,17 @@ public class BillInfo extends JFrame implements ActionListener {
         this.setForeground(Color.BLACK);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout(3, 1));
+        this.setLayout(new GridLayout(4, 1));
 
+
+        hostelIDLabel = new JLabel("Hostel ID");
+        hostelIDText = new JTextField();
         totalIncome = new JButton("Total Income of Hostel");
         searchHosteliteBill = new JButton("Search Hostelite Bill");
         back = new JButton("Back");
         
+        this.add(hostelIDLabel);
+        this.add(hostelIDText);
         this.add(totalIncome);
         this.add(searchHosteliteBill);
         this.add(back);
@@ -36,12 +42,18 @@ public class BillInfo extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == totalIncome) {
-            JOptionPane.showMessageDialog(null, "Total Bills: " + 8000);
+        if (e.getSource() == totalIncome) {
+            AdminInsightsAndBills ad = new AdminInsightsAndBills();
+            String total = ad.totalIncomeOfHostel();
+            JOptionPane.showMessageDialog(null,total);
         }
         else if (e.getSource() == searchHosteliteBill) {
-            this.dispose();
-            new HosteliteBill();
+            
+            AdminInsightsAndBills ad = new AdminInsightsAndBills();
+            String hostelID = hostelIDText.getText();
+            String details = ad.viewBillOfAHostelite(hostelID);
+            JOptionPane.showMessageDialog(null, details);
+            
         }
 
     else if (e.getSource() == back) {

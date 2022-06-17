@@ -6,7 +6,7 @@ import java.awt.event.*;
 import ConcreteClasses.*;
 import FileOperations.*;
 public class Admin extends JFrame implements ActionListener {
-    private JButton addHostelite, searchHostelite, updateHostelite, deleteHostelite, billInfo, complaints;
+    private JButton addHostelite,readAllHostelites, searchHostelite, updateHostelite, deleteHostelite, billInfo, complaints;
     private JButton back;
 
     public Admin() {
@@ -15,9 +15,10 @@ public class Admin extends JFrame implements ActionListener {
         this.setForeground(Color.BLACK);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout(7, 1));
+        this.setLayout(new GridLayout(8, 1));
 
         addHostelite = new JButton("Add Profile");
+        readAllHostelites = new JButton("View All Hostelites");
         searchHostelite = new JButton("Search Info");
         updateHostelite = new JButton("Update Info");
         deleteHostelite = new JButton("Delete Profile");
@@ -26,6 +27,7 @@ public class Admin extends JFrame implements ActionListener {
         back = new JButton("Back");
 
         this.add(addHostelite);
+        this.add(readAllHostelites);
         this.add(searchHostelite);
         this.add(updateHostelite);
         this.add(deleteHostelite);
@@ -34,6 +36,7 @@ public class Admin extends JFrame implements ActionListener {
         this.add(back);
 
         addHostelite.addActionListener(this);
+        readAllHostelites.addActionListener(this);
         searchHostelite.addActionListener(this);
         updateHostelite.addActionListener(this);
         deleteHostelite.addActionListener(this);
@@ -46,9 +49,23 @@ public class Admin extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == addHostelite) {
+        if (e.getSource() == addHostelite) {
             this.dispose();
             new AddHostelite();
+        }
+        
+        else if (e.getSource() == readAllHostelites) {
+            AdminOperations ao = new AdminOperations();
+            String profiles = ao.viewAllProfiles();
+            
+            JOptionPane.showMessageDialog(null, profiles); 
+
+        
+
+            
+
+
+
         }
         else if(e.getSource() == searchHostelite) {
             this.dispose();

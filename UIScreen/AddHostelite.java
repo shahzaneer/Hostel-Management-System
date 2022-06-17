@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import ConcreteClasses.*;
+import ConcreteClasses.Hostelite;
 import FileOperations.*;
 
 
@@ -90,13 +91,24 @@ public class AddHostelite extends JFrame implements ActionListener {
             String secondName = tSecondName.getText();
             String email = tEmail.getText();
             String phoneNumber = tPhoneNumber.getText();
-            int roomNo = Integer.parseInt(tRoomNo.getText());
+            String roomNo = tRoomNo.getText();
             String roomType = tRoomType.getText();
             String vehicleType = tVehicleType.getText();
             String vehicleNumber = tVehicleNumber.getText();
-            // making Objects
-            
 
+            // making Objects
+            Mess m = new Mess();
+            Parking p = new Parking(vehicleType, vehicleNumber);
+            Room r = new Room(roomNo, roomType);
+            Laundry l = new Laundry();
+            RegistrationDateAndTime rdt = new RegistrationDateAndTime();
+
+            // making Hostelite
+            Hostelite h = new Hostelite(firstName, secondName, email, phoneNumber, hostelID, password, r, l, p, m, rdt);
+
+            // making AdminFile Operations Object
+            AdminOperations ao = new AdminOperations();
+            ao.addHostelite(h);
             JOptionPane.showMessageDialog(null, "Hostelite Added Successfully");
 
         }

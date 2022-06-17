@@ -47,8 +47,17 @@ public class ChangePassword extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == update) {
-            JOptionPane.showMessageDialog(null, "Password Updated");
-            this.dispose();
+            HosteliteOperations ho = new HosteliteOperations();
+            String hostelID = tHostelID.getText();
+            String password = passwordText.getText();
+
+            boolean updated = ho.changePassword(hostelID, password);
+
+            if (updated) {
+                JOptionPane.showMessageDialog(null, "Password Updated");
+            } else {
+                JOptionPane.showMessageDialog(null, "Password Not Updated");
+            }
         }
         else if(e.getSource() == back) {
             this.dispose();
