@@ -1,4 +1,4 @@
-package FilingData;
+package FileOperations;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import ConcreteClasses.*;
 
 public class AdminInsightsAndBills {
-
-
+    
+    private ArrayList collectionHostelites;
+    
     public AdminInsightsAndBills() {
         collectionHostelites = new ArrayList<Hostelite>();
     }

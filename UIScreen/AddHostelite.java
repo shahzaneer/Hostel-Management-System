@@ -2,6 +2,8 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import ConcreteClasses.*;
+import FileOperations.*;
 
 
 public class AddHostelite extends JFrame implements ActionListener {
@@ -94,7 +96,6 @@ public class AddHostelite extends JFrame implements ActionListener {
             String vehicleNumber = tVehicleNumber.getText();
             // making Objects
             
-            Hostelite newHostelite = new Hostelite(hostelID, password, firstName, secondName, email, phoneNumber, roomNo, roomType, vehicleType, vehicleNumber);
 
             JOptionPane.showMessageDialog(null, "Hostelite Added Successfully");
 

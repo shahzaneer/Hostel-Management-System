@@ -1,4 +1,4 @@
-package FilingData;
+package FileOperations;
 
 import java.io.EOFException;
 import java.io.File;
@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import ConcreteClasses.*;
 
 
 public class AdminOperations {
@@ -18,7 +19,7 @@ public class AdminOperations {
     private ArrayList<Hostelite> collectionHostelites;
     private File f = new File("hostelites.ser");
 
-    public Admin() {
+    public AdminOperations() {
         collectionHostelites = new ArrayList<Hostelite>();
     }
 
@@ -458,7 +459,7 @@ public class AdminOperations {
                 found = true;
                 // if vehicle type and vehicle number are null set it null
                 if (vehicleNumber.equals("null") || vehicleType.equals("null")) {
-                    collectionHostelites.get(i).getParking().setParkingFee(0);
+                    collectionHostelites.get(i).getParking().setParkingBill(0);
                 }
 
                 collectionHostelites.get(i).getParking().setVehicleType(vehicleType);
@@ -541,7 +542,7 @@ public class AdminOperations {
         for (int i = 0; i < collectionHostelites.size(); i++) {
             if (collectionHostelites.get(i).getHostelID().equals(hostelID)) {
                 found = true;
-                collectionHostelites.get(i).getMess().setOffDays(offDays);
+                collectionHostelites.get(i).getMess().offDays(offDays);
 
             }
         }
@@ -691,10 +692,10 @@ public class AdminOperations {
             oo.close();
 
             // removing the specified object from the arraylist
-            for (int i = 0; i < a.size(); i++) {
+            for (int i = 0; i < collectionHostelites.size(); i++) {
                 if (collectionHostelites.get(i).getHostelID().equals(hostelID) ) {
                     found = true;
-                    a.remove(i);
+                    collectionHostelites.remove(i);
                 }
             }
 
@@ -770,10 +771,10 @@ public class AdminOperations {
             oo.close();
 
             // removing the specified object from the arraylist
-            for (int i = 0; i < a.size(); i++) {
+            for (int i = 0; i < collectionHostelites.size(); i++) {
                 if (collectionHostelites.get(i).getFirstName().equalsIgnoreCase(firstName) && collectionHostelites.get(i).getLastName().equalsIgnoreCase(secondName)) {
                     found = true;
-                    a.remove(i);
+                    collectionHostelites.remove(i);
                 }
             }
 

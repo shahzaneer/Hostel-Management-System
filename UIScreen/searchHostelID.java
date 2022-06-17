@@ -3,6 +3,8 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import ConcreteClasses.*;
+import FileOperations.*;
 
 public class searchHostelID extends JFrame implements ActionListener {
     private JLabel hostelID;
