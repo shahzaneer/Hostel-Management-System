@@ -2,29 +2,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class AdminLogin extends JFrame implements ActionListener {
-    private JLabel Username, Password;
-    private JTextField UsernameText, passwordText;
+public class HosteliteLogin extends JFrame implements ActionListener {
+    private JLabel hostelID, Password;
+    private JTextField hostelIDText, passwordText;
     private JButton LoginButton, backButton;
 
-    public AdminLogin() {
 
-        super("Admin Login ");
+    public HosteliteLogin() {
+
+        super("Hostelite Login ");
         this.setSize(600, 600);
         this.setForeground(Color.BLACK);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new GridLayout(3, 2));
 
-        Username = new JLabel("Username");
+        hostelID = new JLabel("Hostelite ID");
         Password = new JLabel("Password");
-        UsernameText = new JTextField();
+        hostelIDText = new JTextField();
         passwordText = new JTextField();
         LoginButton = new JButton("Login");
         backButton = new JButton("Back");
 
-        this.add(Username);
-        this.add(UsernameText);
+        this.add(hostelID);
+        this.add(hostelIDText);
         this.add(Password);
         this.add(passwordText);
         this.add(LoginButton);
@@ -36,28 +37,29 @@ public class AdminLogin extends JFrame implements ActionListener {
 
 
 
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == LoginButton) {
-            String username = UsernameText.getText();
+        // System.out.println("IN hostelite ActionFunction");
+        if (e.getSource() == LoginButton) {
+            // System.out.println("Login triggered");
+            String hostelID = hostelIDText.getText();
             String password = passwordText.getText();
 
-            
-
-            if (username.equals("admin") && password.equals("admin")) {
-                // System.out.println("Login Successful");
+            if (hostelID.equals("123") && password.equals("123")) {
                 JOptionPane.showMessageDialog(null, "Login Successful");
-                dispose();
-                new Admin();
-            }
+                this.dispose();
+                new Hostelite();
+            } 
             else {
-                JOptionPane.showMessageDialog(null, "Login Failed");
+                JOptionPane.showMessageDialog(null, "Login Failed Try Again!");
             }
         }
+        
         else if(e.getSource() == backButton) {
-            dispose();
+            this.dispose();
             new Main();
         }
     }

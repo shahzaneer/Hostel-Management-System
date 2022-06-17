@@ -37,11 +37,11 @@ public class Main extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == Admin) {
-
+            new AdminLogin();
         }
 
         else if (e.getSource() == Hostelite) {
-
+            new HosteliteLogin();
         }     
     }
 

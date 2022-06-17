@@ -78,7 +78,7 @@ public class HosteliteOperations {
     }
 
 
-    boolean changePassword(String hostelID, String password) {
+    public boolean changePassword(String hostelID, String password) {
 
         boolean found = false;
 
@@ -560,7 +560,7 @@ public class HosteliteOperations {
 
     }
 
-    
+
 
 
 

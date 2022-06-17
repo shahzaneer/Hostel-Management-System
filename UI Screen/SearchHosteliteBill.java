@@ -1,3 +1,0 @@
-public class SearchHosteliteBill {
-    
-}

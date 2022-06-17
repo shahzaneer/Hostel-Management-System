@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class AdminInsightsAndBills {
 
-    private File f = new File("hostelites.ser");
 
     public AdminInsightsAndBills() {
         collectionHostelites = new ArrayList<Hostelite>();

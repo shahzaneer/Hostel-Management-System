@@ -12,12 +12,12 @@ public class Admin extends JFrame implements ActionListener {
         this.setForeground(Color.BLACK);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout(6, 1));
+        this.setLayout(new GridLayout(7, 1));
 
-        addHostelite = new JButton("Add Hostelite");
-        searchHostelite = new JButton("Search Hostelite");
-        updateHostelite = new JButton("Update Hostelite");
-        deleteHostelite = new JButton("Delete Hostelite");
+        addHostelite = new JButton("Add Profile");
+        searchHostelite = new JButton("Search Info");
+        updateHostelite = new JButton("Update Info");
+        deleteHostelite = new JButton("Delete Profile");
         billInfo = new JButton("Bill Info");
         complaints = new JButton("See Complaints");
         back = new JButton("Back");

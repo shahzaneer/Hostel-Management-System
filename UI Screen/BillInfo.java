@@ -4,53 +4,47 @@ import java.awt.event.*;
 
 public class BillInfo extends JFrame implements ActionListener {
 
-    private JButton totalBills , searchHosteliteBill;
-    private JButton adminScreen, homeScreen;
+    private JButton totalIncome , searchHosteliteBill;
+    private JButton back;
 
     public BillInfo() {
 
-        super("Bill Info");
+        super("Bill Information");
         this.setSize(600, 600);
         this.setForeground(Color.BLACK);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout(2, 2));
+        this.setLayout(new GridLayout(3, 1));
 
-        totalBills = new JButton("Total Bills");
+        totalIncome = new JButton("Total Income of Hostel");
         searchHosteliteBill = new JButton("Search Hostelite Bill");
-        adminScreen = new JButton("Admin Screen");
-        homeScreen = new JButton("Home Screen ");
-
-        this.add(totalBills);
+        back = new JButton("Back");
+        
+        this.add(totalIncome);
         this.add(searchHosteliteBill);
-        this.add(adminScreen);
-        this.add(homeScreen);
+        this.add(back);
 
-        totalBills.addActionListener(this);
+        totalIncome.addActionListener(this);
         searchHosteliteBill.addActionListener(this);
-        adminScreen.addActionListener(this);
-        homeScreen.addActionListener(this);
-
+        back.addActionListener(this);
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == totalBills) {
-            this.dispose();
+        if(e.getSource() == totalIncome) {
             JOptionPane.showMessageDialog(null, "Total Bills: " + 8000);
         }
-        else if(e.getSource() == searchHosteliteBill) {
+        else if (e.getSource() == searchHosteliteBill) {
             this.dispose();
-            new SearchHosteliteBill();
+            new HosteliteBill();
         }
-        else if(e.getSource() == adminScreen) {
-            this.dispose();
-            new Admin();
-        }
-        else if(e.getSource() == homeScreen) {
-            this.dispose();
-            new Main();
-        }
+
+    else if (e.getSource() == back) {
+        this.dispose();
+        new Admin();
+    }
+    
     }
     
 }
