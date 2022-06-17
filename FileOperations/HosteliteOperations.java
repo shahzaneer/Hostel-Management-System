@@ -137,7 +137,6 @@ public class HosteliteOperations {
 
     }
 
-
     public boolean changePassword(String hostelID, String password) {
 
         boolean found = false;
@@ -297,7 +296,6 @@ public class HosteliteOperations {
         return found;
 
     }
-
 
     public boolean updatePhoneNumber(String hostelID, String phoneNo) {
 
@@ -538,7 +536,6 @@ public class HosteliteOperations {
         return found;
 
     }
-
 
     public boolean recordComplain(String hostelID, String complain) {
 

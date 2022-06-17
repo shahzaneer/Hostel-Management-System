@@ -3,7 +3,6 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import ConcreteClasses.*;
 import FileOperations.*;
 
 public class DeleteByName extends JFrame implements ActionListener {
@@ -56,7 +55,7 @@ public class DeleteByName extends JFrame implements ActionListener {
             else {
                 JOptionPane.showMessageDialog(null, "Hostelite not found");
             }
-            
+
         }
         else if(e.getSource() == back) {
             this.dispose();

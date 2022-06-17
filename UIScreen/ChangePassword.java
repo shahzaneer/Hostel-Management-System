@@ -3,7 +3,6 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import ConcreteClasses.*;
 import FileOperations.*;
 
 public class ChangePassword extends JFrame implements ActionListener {

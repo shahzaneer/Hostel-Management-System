@@ -3,8 +3,6 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import ConcreteClasses.*;
-import FileOperations.*;
 
 public class SearchHostelite extends JFrame implements ActionListener {
     private JButton searchName, searchHostelID, searchYear, searchRoomType;

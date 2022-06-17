@@ -3,12 +3,9 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import ConcreteClasses.*;
 import FileOperations.*;
 
 public class HosteliteBill extends JFrame implements ActionListener {
-    private JLabel hostelID;
-    private JTextField hostelIDText;
     private JButton search;
     private JButton back;
 
@@ -20,13 +17,9 @@ public class HosteliteBill extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new GridLayout(2, 2));
 
-        hostelID = new JLabel("Hostel ID");
-        hostelIDText = new JTextField();
         search = new JButton("Search");
         back = new JButton("Back");
 
-        this.add(hostelID);
-        this.add(hostelIDText);
         this.add(search);
         this.add(back);
 
@@ -38,7 +31,6 @@ public class HosteliteBill extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == search) {
-            String hostelID = hostelIDText.getText();
             AdminInsightsAndBills ad = new AdminInsightsAndBills();
             String details = ad.totalIncomeOfHostel();
             JOptionPane.showMessageDialog(null, details);
