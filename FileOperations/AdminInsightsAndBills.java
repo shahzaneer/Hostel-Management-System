@@ -28,7 +28,7 @@ public class AdminInsightsAndBills {
                 // Reading object is below
                 foundSome = true;
                 Hostelite s = (Hostelite) oo.readObject();
-                totalIncomeOfHostel += s.getTotalBill();
+                totalIncomeOfHostel += s.totalBillOfHostelite();
             }
         }
 
@@ -82,7 +82,7 @@ public class AdminInsightsAndBills {
                 Hostelite s = (Hostelite) oo.readObject();
                 if (s.getHostelID().equalsIgnoreCase(hostelID)) {
                     double bill = s.getTotalBill();
-                    details.append(bill + "");
+                    details.append("The total bill is : "+ bill);
                     foundSome = true;
                     break;
                 }
@@ -132,9 +132,11 @@ public class AdminInsightsAndBills {
 
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
-                String complain = s.getComplain();
-                details.append(complain);
-                foundSome = true;
+                if (s.getComplain() != "") {
+                    details.append(s.getComplain() + "\n");
+                    foundSome = true;
+                }
+                
                 }
 
         } catch (ClassNotFoundException e) {
@@ -163,7 +165,7 @@ public class AdminInsightsAndBills {
         }
 
         if (!foundSome) {
-            return "No Student Found !";
+            return "No Record for Complains Found!";
         }
 
         return details.toString();

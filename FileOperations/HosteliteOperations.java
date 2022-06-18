@@ -97,7 +97,7 @@ public class HosteliteOperations {
 
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
-                if (s.getComplain() != null) {
+                if (s.getComplain() != "") {
                     details.append(s.getComplain() + "\n");
                 }
                 }

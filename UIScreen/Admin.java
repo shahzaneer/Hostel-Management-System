@@ -5,7 +5,7 @@ import java.awt.event.*;
 
 import FileOperations.*;
 public class Admin extends JFrame implements ActionListener {
-    private JButton addHostelite,readAllHostelites, searchHostelite, updateHostelite, deleteHostelite, billInfo, complaints;
+    private JButton addHostelite,readAllHostelites, searchHostelite, updateHostelite, deleteHostelite, billInfo, totalIncome,  complaints;
     private JButton back;
 
     public Admin() {
@@ -14,7 +14,7 @@ public class Admin extends JFrame implements ActionListener {
         this.setForeground(Color.BLACK);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout(8, 1));
+        this.setLayout(new GridLayout(9, 1));
 
         addHostelite = new JButton("Add Profile");
         readAllHostelites = new JButton("View All Hostelites");
@@ -22,6 +22,7 @@ public class Admin extends JFrame implements ActionListener {
         updateHostelite = new JButton("Update Info");
         deleteHostelite = new JButton("Delete Profile");
         billInfo = new JButton("Bill Info");
+        totalIncome = new JButton("Total Income");
         complaints = new JButton("See Complaints");
         back = new JButton("Back");
 
@@ -31,6 +32,7 @@ public class Admin extends JFrame implements ActionListener {
         this.add(updateHostelite);
         this.add(deleteHostelite);
         this.add(billInfo);
+        this.add(totalIncome);
         this.add(complaints);
         this.add(back);
 
@@ -40,6 +42,7 @@ public class Admin extends JFrame implements ActionListener {
         updateHostelite.addActionListener(this);
         deleteHostelite.addActionListener(this);
         billInfo.addActionListener(this);
+        totalIncome.addActionListener(this);
         complaints.addActionListener(this);
         back.addActionListener(this);
 
@@ -78,9 +81,14 @@ public class Admin extends JFrame implements ActionListener {
             this.dispose();
             new DeleteHostelite();
         }
-        else if(e.getSource() == billInfo) {
+        else if (e.getSource() == billInfo) {
             this.dispose();
             new BillInfo();
+        }
+        
+        else if(e.getSource() == totalIncome) {
+            this.dispose();
+            new TotalIncome();
         }
         else if (e.getSource() == complaints) {
             this.dispose();

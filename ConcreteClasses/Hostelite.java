@@ -101,7 +101,10 @@ public class Hostelite extends Person {
     }
 
     // get that complain
-    public String getComplain() {         
+    public String getComplain() {
+        if(this.complain.equals("")) {
+            return "";
+        }
         return "Name : " + this.getFirstName() + " " + this.getLastName() + "\n"
             + "Hostel ID : " + this.getHostelID() + "\n"
             + "Complain : " + this.complain + "\n";

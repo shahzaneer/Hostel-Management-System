@@ -32,8 +32,14 @@ public class Complaints extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == seeComplain) {
             HosteliteOperations h = new HosteliteOperations();
-            String complains = h.getAllComplains();
-            JOptionPane.showMessageDialog(null, complains);
+            String complaints = h.getAllComplains();
+
+            if(complaints.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "No Complaints");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, complaints);
+            }
 
         }
         else if(e.getSource() == back) {
