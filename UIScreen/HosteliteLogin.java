@@ -1,6 +1,7 @@
 package UIScreen; 
 
 import javax.swing.*;
+import FileOperations.HosteliteOperations;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -8,6 +9,10 @@ public class HosteliteLogin extends JFrame implements ActionListener {
     private JLabel hostelID, Password;
     private JTextField hostelIDText, passwordText;
     private JButton LoginButton, backButton;
+
+    // for storing the credentials of the current hostelite
+    private String hostelIDString, passwordString;
+
 
 
     public HosteliteLogin() {
@@ -45,14 +50,16 @@ public class HosteliteLogin extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == LoginButton) {
-
+            HosteliteOperations ho = new HosteliteOperations();
+            
             String hostelID = hostelIDText.getText();
             String password = passwordText.getText();
+            boolean login = ho.credentialsFound(hostelID, password);
 
-            if (hostelID.equals("123") && password.equals("123")) {
+            if (login) {
                 JOptionPane.showMessageDialog(null, "Login Successful");
                 this.dispose();
-                new Hostelite();
+                new Hostelite(hostelID);
             } 
             else {
                 JOptionPane.showMessageDialog(null, "Login Failed Try Again!");

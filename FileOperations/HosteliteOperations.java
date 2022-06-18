@@ -617,6 +617,50 @@ public class HosteliteOperations {
 
     }
 
+    public boolean credentialsFound(String hostelID, String password) {
+        boolean found = false;
+        ObjectInputStream oo = null;
+
+
+        try {
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
+
+            while (true) {
+                // Reading object is below
+                Hostelite s = (Hostelite) oo.readObject();
+                if (s.getHostelID().equalsIgnoreCase(hostelID) && s.getPassword().equalsIgnoreCase(password)) {
+                    return true;
+                }
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        catch (EOFException e) {
+
+        }
+
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                oo.close();
+
+            } catch (IOException e) {
+            }
+
+        }
+
+        return found;
+
+    }
 
 
 

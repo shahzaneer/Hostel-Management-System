@@ -7,22 +7,22 @@ import FileOperations.*;
 
 public class AddVisitorToMess extends JFrame implements ActionListener {
 
-    private JLabel lHostelID , visitors , days;
-    private JTextField tHostelID , visitorsText , daysText;
+    private JLabel  visitors , days;
+    private JTextField visitorsText , daysText;
     private JButton update, back;
+    private String hostelID;
 
-    public AddVisitorToMess() {
+    public AddVisitorToMess(String hostelID) {
 
         super("Add Visitors to Mess");
+        this.hostelID = hostelID;
         this.setSize(600, 600);
         this.setForeground(Color.BLACK);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new GridLayout(4, 2));
 
-        lHostelID = new JLabel("Hostel ID");
-        tHostelID = new JTextField();
-
+        
         visitors = new JLabel("No of Visitors");
         visitorsText = new JTextField();
 
@@ -33,8 +33,6 @@ public class AddVisitorToMess extends JFrame implements ActionListener {
         update = new JButton("Update");
         back = new JButton("Back");
 
-        this.add(lHostelID);
-        this.add(tHostelID);
         this.add(visitors);
         this.add(visitorsText);
         this.add(days);
@@ -52,7 +50,6 @@ public class AddVisitorToMess extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == update) {
             HosteliteOperations ho = new HosteliteOperations();
-            String hostelID = tHostelID.getText();
             int visitors = Integer.parseInt(visitorsText.getText());
             int days = Integer.parseInt(daysText.getText());
 
@@ -69,7 +66,7 @@ public class AddVisitorToMess extends JFrame implements ActionListener {
         }
         else if(e.getSource() == back) {
             this.dispose();
-            new Hostelite();
+            new Hostelite(hostelID);
 
         }
         

@@ -7,24 +7,20 @@ import FileOperations.*;
 
 public class GetProfile extends JFrame implements ActionListener {
 
-    JLabel hostelIDl;
-    JTextField hostelIDt;
     JButton profileInfo, back;
+    private String hostelID;
 
-    public GetProfile() {
+    public GetProfile(String hostelID) {
         super("Profile");
+        this.hostelID = hostelID;
         this.setSize(600, 600);
         this.setForeground(Color.BLACK);
         this.setVisible(true);
-        this.setLayout(new GridLayout(2, 2));
+        this.setLayout(new GridLayout(2, 1));
 
-        hostelIDl = new JLabel("Hostel ID");
-        hostelIDt = new JTextField();
         profileInfo = new JButton("Profile Info");
         back = new JButton("Back");
 
-        this.add(hostelIDl);
-        this.add(hostelIDt);
         this.add(profileInfo);
         this.add(back);
 
@@ -39,11 +35,10 @@ public class GetProfile extends JFrame implements ActionListener {
 
         if(e.getSource() == back) {
             this.dispose();
-            new Hostelite();
+            new Hostelite(hostelID);
         }
         else if (e.getSource() == profileInfo) {
             HosteliteOperations h = new HosteliteOperations();
-            String hostelID = hostelIDt.getText();
             String profile = h.getProfileInfo(hostelID);
             JOptionPane.showMessageDialog(null,profile);
         }

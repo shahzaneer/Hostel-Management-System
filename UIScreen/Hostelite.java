@@ -7,10 +7,13 @@ import java.awt.event.*;
 public class Hostelite extends JFrame implements ActionListener {
 
     JButton getProfile , changePassword, updateEmail , updatePhone,
-            addvisitorToMess, addGarments, recordComplain , back;
+            addvisitorToMess, addGarments, recordComplain, back;
+            
+    private String hostelID;        
 
-    public Hostelite() {
+    public Hostelite(String hostelID) {
         super("Hostelite Portal");
+        this.hostelID = hostelID;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 600);
         this.setForeground(Color.BLACK);
@@ -50,31 +53,31 @@ public class Hostelite extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == getProfile) {
             this.dispose();
-            new GetProfile();
+            new GetProfile(hostelID);
         }
         else if (e.getSource() == changePassword) {
             this.dispose();
-            new ChangePassword();
+            new ChangePassword(hostelID);
         }
         else if (e.getSource() == updateEmail) {
             this.dispose();
-            new UpdateEmail();
+            new UpdateEmail(hostelID);
         }
         else if (e.getSource() == updatePhone) {
             this.dispose();
-            new UpdatePhone();
+            new UpdatePhone(hostelID);
         }
         else if (e.getSource() == addvisitorToMess) {
             this.dispose();
-            new AddVisitorToMess();
+            new AddVisitorToMess(hostelID);
         }
         else if (e.getSource() == addGarments) {
             this.dispose();
-            new AddGarments();
+            new AddGarments(hostelID);
         }
         else if (e.getSource() == recordComplain) {
             this.dispose();
-            new RecordComplain();
+            new RecordComplain(hostelID);
         }
         else if(e.getSource() == back) {
             this.dispose();
