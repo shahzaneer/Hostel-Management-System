@@ -7,6 +7,7 @@ public class Mess implements Serializable{
 
 
     public Mess() {
+        this.messBill = 6000; 
     }
 
     public Mess(double messBill) {

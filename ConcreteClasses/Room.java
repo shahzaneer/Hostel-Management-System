@@ -37,6 +37,13 @@ public class Room implements Serializable{
 
     public void setRoomType(String roomType) {
         this.roomType = roomType;
+        if(roomType.equalsIgnoreCase("singleseator")) {
+            this.roomRent = 12000;
+        } else if (roomType.equalsIgnoreCase("biseator")) {
+            this.roomRent = 10000;
+        } else if (roomType.equalsIgnoreCase("triseator")) {
+            this.roomRent = 8000;
+        }
     }
 
     public double getRoomRent() {

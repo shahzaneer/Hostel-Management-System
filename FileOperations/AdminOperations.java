@@ -24,6 +24,7 @@ public class AdminOperations {
     }
 
     //! Creation of the DATA 
+    //* working 🎉
 
     public void addHostelite(Hostelite s) {
         ObjectOutputStream oos = null;
@@ -61,6 +62,8 @@ public class AdminOperations {
     }
 
     //! Reading of the DATA
+    //* working 🎉
+
 
     public String viewAllProfiles() {
 
@@ -68,7 +71,7 @@ public class AdminOperations {
         StringBuilder details = new StringBuilder();
 
         if (!f.exists())
-        return "File Not Found No Record!";
+            return "File Not Found No Record!";
 
     if (f.exists()) {
         try {
@@ -115,12 +118,18 @@ public class AdminOperations {
 
     }
 
-    //! Searching of DATA with different Aspects
-
+    //! Searching of DATA with different Aspects 
+    //* working 🎉
+    
     public String searchByName(String firstName) {
         StringBuilder details = new StringBuilder();
         boolean foundSome = false;
         ObjectInputStream oo = null;
+
+        if (!f.exists()) {
+            return "File Not Found No Record!";
+        }
+
         try {
             oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
 
@@ -128,6 +137,7 @@ public class AdminOperations {
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
                 if (s.getFirstName().equalsIgnoreCase(firstName)) {
+                    // System.out.println("pehla naam!");
                     details.append(s.toString());
                     foundSome = true;
                 }
@@ -172,6 +182,10 @@ public class AdminOperations {
         StringBuilder details = new StringBuilder();
         boolean foundSome = false;
         ObjectInputStream oo = null;
+
+        if (!f.exists()) {
+            return "File Not Found No Record!";
+        }
         try {
             oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
 
@@ -223,6 +237,10 @@ public class AdminOperations {
         StringBuilder details = new StringBuilder();
         ObjectInputStream oo = null;
         boolean foundSome = false;
+
+        if (!f.exists()) {
+            return "File Not Found No Record!";
+        }
         try {
             oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
 
@@ -272,6 +290,10 @@ public class AdminOperations {
         StringBuilder details = new StringBuilder();
         ObjectInputStream oo = null;
         boolean foundSome = false;
+
+        if (!f.exists()) {
+            return "File Not Found No Record!";
+        }
         try {
             oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
 
@@ -320,6 +342,7 @@ public class AdminOperations {
     
     //! UPDATION of DATA with different Aspects
 
+    //* working 🎉
 
     public boolean updateRoom(String hostelID, String roomNo, String roomType) {
 
@@ -328,7 +351,7 @@ public class AdminOperations {
         ObjectInputStream oo = null;
         try {
 
-            oo = new ObjectInputStream(new FileInputStream("hostelite.ser"));
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
 
             try {
                 while (true) {
@@ -359,46 +382,32 @@ public class AdminOperations {
 
         for (int i = 0; i < collectionHostelites.size(); i++) {
 
-            if (collectionHostelites.get(i).getHostelID().equals(hostelID)) {
+            if (collectionHostelites.get(i).getHostelID().equalsIgnoreCase(hostelID)) {
 
                 found = true;
 
                 collectionHostelites.get(i).getRoom().setRoomNo(roomNo);
                 collectionHostelites.get(i).getRoom().setRoomType(roomType);
 
-                if (roomType.equalsIgnoreCase("singleseater")) {
-                    collectionHostelites.get(i).getRoom().setRoomRent(12000);
-
-                }
-                else if (roomType.equalsIgnoreCase("biseater")) {
-                    collectionHostelites.get(i).getRoom().setRoomRent(10000);
-
-                }
-
-                else if (roomType.equalsIgnoreCase("triseater")) {
-                    collectionHostelites.get(i).getRoom().setRoomRent(8000);
-
-                }
+                // again setting the main bill 
+                double totalBill = collectionHostelites.get(i).totalBillOfHostelite();
+                collectionHostelites.get(i).setTotalBill(totalBill);       
                 
             }
         }
 
         //* now again writing the Arraylist Objects to the file. first time it will create the file again and only then it will append!
-        // file object
-        // f = new File("Students.ser");
+
         ObjectOutputStream oos = null;
         int counter = 0;
 
         try {
             for (int i = 0; i < collectionHostelites.size(); i++) {
-                // System.out.println("After Manipulation reading loop - size of arraylist"+ i);
                 if (counter > 0) {
-                    // System.out.println("counter greater then 0");
                     oos = new MyObjectOutputStream(new FileOutputStream(f, true));
                     oos.writeObject(collectionHostelites.get(i));
 
                 } else {
-                    // System.out.println("counter is 0");
                     oos = new ObjectOutputStream(new FileOutputStream(f));
                     oos.writeObject(collectionHostelites.get(i));
                     counter++;
@@ -458,22 +467,26 @@ public class AdminOperations {
 
         for (int i = 0; i < collectionHostelites.size(); i++) {
 
-            if (collectionHostelites.get(i).getHostelID().equals(hostelID)) {
+            if (collectionHostelites.get(i).getHostelID().equalsIgnoreCase(hostelID)) {
                 found = true;
                 // if vehicle type and vehicle number are null set it null
-                if (vehicleNumber.equals("null") || vehicleType.equals("null")) {
+                if (vehicleNumber.equalsIgnoreCase("null") || vehicleType.equalsIgnoreCase("null")) {
                     collectionHostelites.get(i).getParking().setParkingBill(0);
                 }
 
                 collectionHostelites.get(i).getParking().setVehicleType(vehicleType);
                 collectionHostelites.get(i).getParking().setVehicleNumber(vehicleNumber);
 
+                // again setting the main bill 
+                double totalBill = collectionHostelites.get(i).totalBillOfHostelite();
+                collectionHostelites.get(i).setTotalBill(totalBill);       
+                
+
             }
         }
 
         //* now again writing the Arraylist Objects to the file. first time it will create the file again and only then it will append!
-        // file object
-        // f = new File("Students.ser");
+    
         ObjectOutputStream oos = null;
         int counter = 0;
 
@@ -484,7 +497,6 @@ public class AdminOperations {
                     oos.writeObject(collectionHostelites.get(i));
 
                 } else {
-                    // System.out.println("counter is 0");
                     oos = new ObjectOutputStream(new FileOutputStream(f));
                     oos.writeObject(collectionHostelites.get(i));
                     counter++;
@@ -543,9 +555,14 @@ public class AdminOperations {
         // firstly manipulating the object
 
         for (int i = 0; i < collectionHostelites.size(); i++) {
-            if (collectionHostelites.get(i).getHostelID().equals(hostelID)) {
+            if (collectionHostelites.get(i).getHostelID().equalsIgnoreCase(hostelID)) {
                 found = true;
                 collectionHostelites.get(i).getMess().offDays(offDays);
+
+                // again setting the main bill 
+                double totalBill = collectionHostelites.get(i).totalBillOfHostelite();
+                collectionHostelites.get(i).setTotalBill(totalBill);       
+                
 
             }
         }
@@ -558,14 +575,11 @@ public class AdminOperations {
 
         try {
             for (int i = 0; i < collectionHostelites.size(); i++) {
-                // System.out.println("After Manipulation reading loop - size of arraylist"+ i);
                 if (counter > 0) {
-                    // System.out.println("counter greater then 0");
                     oos = new MyObjectOutputStream(new FileOutputStream(f, true));
                     oos.writeObject(collectionHostelites.get(i));
 
                 } else {
-                    // System.out.println("counter is 0");
                     oos = new ObjectOutputStream(new FileOutputStream(f));
                     oos.writeObject(collectionHostelites.get(i));
                     counter++;
@@ -624,7 +638,7 @@ public class AdminOperations {
         // firstly manipulating the object
 
         for (int i = 0; i < collectionHostelites.size(); i++) {
-            if (collectionHostelites.get(i).getHostelID().equals(hostelID)) {
+            if (collectionHostelites.get(i).getHostelID().equalsIgnoreCase(hostelID)) {
 
                 found = true;
                 collectionHostelites.get(i).setFirstName(firstName);
@@ -640,14 +654,11 @@ public class AdminOperations {
 
         try {
             for (int i = 0; i < collectionHostelites.size(); i++) {
-                // System.out.println("After Manipulation reading loop - size of arraylist"+ i);
                 if (counter > 0) {
-                    // System.out.println("counter greater then 0");
                     oos = new MyObjectOutputStream(new FileOutputStream(f, true));
                     oos.writeObject(collectionHostelites.get(i));
 
                 } else {
-                    // System.out.println("counter is 0");
                     oos = new ObjectOutputStream(new FileOutputStream(f));
                     oos.writeObject(collectionHostelites.get(i));
                     counter++;
@@ -671,6 +682,7 @@ public class AdminOperations {
     
     
     //! Deletion of DATA 
+    //* working 🎉
 
     public boolean removeHostelite(String hostelID) {
 

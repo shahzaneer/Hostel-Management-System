@@ -46,7 +46,7 @@ public class setOffDaysInMess extends JFrame implements ActionListener {
         if (e.getSource() == update) {
             
             String hostelID = tHostelID.getText();
-            int offdays = Integer.parseInt(offdaysText.toString());
+            int offdays = Integer.parseInt(offdaysText.getText());
             AdminOperations ao = new AdminOperations();
             boolean found = ao.setOffDaysInMess(hostelID, offdays);
 

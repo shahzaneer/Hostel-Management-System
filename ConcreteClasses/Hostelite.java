@@ -101,14 +101,11 @@ public class Hostelite extends Person {
     }
 
     // get that complain
-    public String getComplain() {
-        if (this.complain == null) {
-            return "No Complain";
-        } else {
-            return "Name : " + this.getFirstName() + " " + this.getLastName() + "\n"
-                    + "Hostel ID : " + this.getHostelID() + "\n"
-                    + "Complain : " + this.complain + "\n";
-        }
+    public String getComplain() {         
+        return "Name : " + this.getFirstName() + " " + this.getLastName() + "\n"
+            + "Hostel ID : " + this.getHostelID() + "\n"
+            + "Complain : " + this.complain + "\n";
+
     }
 
     public double totalBillOfHostelite() {
@@ -122,9 +119,9 @@ public class Hostelite extends Person {
             "----------------------------------------------------------\n"+
             super.toString() +
             "Hostel ID = " + getHostelID() + "\n" +
-            "Room = " + getRoom().toString() + "\n" +
+            getRoom().toString() + "\n" +
             getLaundry().toString() + "\n" +
-            "Parking = " + getParking().toString() + "\n" +
+            getParking().toString() + "\n" +
             getMess().toString() + "\n" +
             "Total Bill " + this.totalBillOfHostelite() + "\n" +
             getRegistrationDateAndTime().toString() + "\n" +
