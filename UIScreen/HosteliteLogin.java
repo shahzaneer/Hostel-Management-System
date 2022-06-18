@@ -10,9 +10,6 @@ public class HosteliteLogin extends JFrame implements ActionListener {
     private JTextField hostelIDText, passwordText;
     private JButton LoginButton, backButton;
 
-    // for storing the credentials of the current hostelite
-    private String hostelIDString, passwordString;
-
 
 
     public HosteliteLogin() {

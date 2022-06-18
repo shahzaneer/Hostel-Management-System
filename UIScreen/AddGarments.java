@@ -47,11 +47,10 @@ public class AddGarments extends JFrame implements ActionListener {
             boolean updated = ho.addExtraGarmetsToLaundry(hostelID, newGarments);
             if(updated) {
                 JOptionPane.showMessageDialog(null, "Garments Limit updated!");
-                this.dispose();
+                
             }
             else {
-                JOptionPane.showMessageDialog(null, "Hostel ID was not found!");
-                this.dispose();
+                JOptionPane.showMessageDialog(null, "Could not update the limit Try again!");
             }
         }
         else if(e.getSource() == back) {

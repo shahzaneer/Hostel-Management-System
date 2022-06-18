@@ -57,11 +57,9 @@ public class AddVisitorToMess extends JFrame implements ActionListener {
 
             if(updated) {
                 JOptionPane.showMessageDialog(null, "Visitors added to Mess!");
-                this.dispose();
             }
             else {
-                JOptionPane.showMessageDialog(null, "Hostel ID was not found!");
-                this.dispose();
+                JOptionPane.showMessageDialog(null, "Try Again !");
             }
         }
         else if(e.getSource() == back) {
