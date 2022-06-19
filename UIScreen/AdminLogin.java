@@ -48,8 +48,7 @@ public class AdminLogin extends JFrame implements ActionListener {
 
             
 
-            if (username.equals("admin") && password.equals("admin")) {
-                // System.out.println("Login Successful");
+            if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
                 JOptionPane.showMessageDialog(null, "Login Successful");
                 dispose();
                 new Admin();

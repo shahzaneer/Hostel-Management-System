@@ -57,11 +57,9 @@ public class Admin extends JFrame implements ActionListener {
         }
         
         else if (e.getSource() == readAllHostelites) {
-            AdminOperations ao = new AdminOperations();
-            String profiles = ao.viewAllProfiles();
+            this.dispose();
+            new ViewAllProfiles();
             
-            JOptionPane.showMessageDialog(null, profiles); 
-
         
 
             
