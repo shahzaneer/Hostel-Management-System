@@ -3,12 +3,14 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import FileOperations.*;
 
 
 public class ViewAllProfiles extends JFrame implements ActionListener {
     
-    JLabel profiles;
+    JButton profiles;
     JButton back;
 
     public ViewAllProfiles() {
@@ -17,25 +19,15 @@ public class ViewAllProfiles extends JFrame implements ActionListener {
         this.setForeground(Color.BLACK);
         this.setVisible(true);
         this.setLayout(new GridLayout(2, 1));
-        AdminOperations ao = new AdminOperations();
-
-        String s = ao.viewAllProfiles(); 
-        profiles = new JLabel(s);
-
-        JPanel panel = new JPanel();
-        panel.add(profiles);
-
-        back = new JButton("Back");
-
         
-
-        JScrollPane scrollPane = new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-        this.add(scrollPane);
+    
+        profiles = new JButton("Profiles");
+        back = new JButton("Back");
         this.add(back);
+        this.add(profiles);
 
         back.addActionListener(this);
+        profiles.addActionListener(this);
 
         
 
@@ -43,6 +35,23 @@ public class ViewAllProfiles extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == profiles) {
+            AdminOperations ao = new AdminOperations();
+            ArrayList s = ao.viewAllProfiles();
+
+            if (s.size() == 0) {
+                JOptionPane.showMessageDialog(null, "No Data Found");
+            }
+            
+            if (s.size() >= 1) {
+                for (int i = 0; i < s.size(); i++) {
+                    String details = s.get(i).toString();
+                    JOptionPane.showMessageDialog(null ,details);
+                }
+            }            
+
+        }
         if (e.getSource() == back) {
             this.dispose();
             new Admin();
