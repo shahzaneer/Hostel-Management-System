@@ -38,7 +38,7 @@ public class ViewAllProfiles extends JFrame implements ActionListener {
 
         if (e.getSource() == profiles) {
             AdminOperations ao = new AdminOperations();
-            ArrayList s = ao.viewAllProfiles();
+            ArrayList <ConcreteClasses.Hostelite> s = ao.viewAllProfiles();
 
             if (s.size() == 0) {
                 JOptionPane.showMessageDialog(null, "No Data Found");
