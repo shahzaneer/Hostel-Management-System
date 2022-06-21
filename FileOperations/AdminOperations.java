@@ -65,14 +65,14 @@ public class AdminOperations {
     //* working 🎉
 
 
-    public String viewAllProfiles() {
+    public ArrayList<Hostelite> viewAllProfiles() {
 
+        ArrayList<Hostelite> a = new ArrayList<>();
         ObjectInputStream oo = null;
-        StringBuilder details = new StringBuilder();
 
         if (!f.exists())
-            return "File Not Found No Record!";
-
+            return a;
+            
     if (f.exists()) {
         try {
             oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
@@ -81,7 +81,8 @@ public class AdminOperations {
 
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
-                details.append(s.toString());
+                a.add(s);
+
             }
 
         } catch (ClassNotFoundException e) {
@@ -108,14 +109,9 @@ public class AdminOperations {
 
         }
 
-        String s = details.toString();
-
-        return s;
-
     }
 
-    return "File Not Found No Record!";
-
+    return a;
     }
 
     //! Searching of DATA with different Aspects 
