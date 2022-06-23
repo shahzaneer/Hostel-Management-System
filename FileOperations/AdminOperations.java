@@ -64,7 +64,6 @@ public class AdminOperations {
     //! Reading of the DATA
     //* working 🎉
 
-
     public ArrayList<Hostelite> viewAllProfiles() {
 
         ArrayList<Hostelite> a = new ArrayList<>();
@@ -824,7 +823,8 @@ public class AdminOperations {
     }
 
     //! Forgot Password
-    public String getPass(String hostelID){
+    //* working 🎉
+    public String getPass(String hostelID) {
         StringBuilder passwordDetails = new StringBuilder();
         ObjectInputStream oo = null;
 
@@ -839,8 +839,9 @@ public class AdminOperations {
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
                 if (s.getHostelID().equalsIgnoreCase(hostelID)) {
-                    passwordDetails.append("Name :"+ s.getFirstName() + " " + s.getLastName() + "\n" + "Hostel ID :"+ s.getHostelID() +"\n" + "Password : " + s.getPassword());
-                    break; 
+                    passwordDetails.append("Name :" + s.getFirstName() + " " + s.getLastName() + "\n" + "Hostel ID :"
+                            + s.getHostelID() + "\n" + "Password : " + s.getPassword());
+                    break;
                 }
             }
 
@@ -869,14 +870,65 @@ public class AdminOperations {
 
         }
 
-    
-
         String details = passwordDetails.toString();
 
         return details;
 
     }
     
+    
+    //! To check if the current HostelID exists
+    public boolean hostelIDExists(String hostelID) {
+
+        
+        ObjectInputStream oo = null;
+
+        if (!f.exists())
+            return false;
+            
+    if (f.exists()) {
+        try {
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
+
+            while (true) {
+
+                // Reading object is below
+                Hostelite s = (Hostelite) oo.readObject();
+                if (s.getHostelID().equalsIgnoreCase(hostelID)) {
+                    return true;
+                }
+
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        catch (EOFException e) {
+
+        }
+
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                oo.close();
+            } catch (IOException e) {
+            }
+
+        }
+
+    }
+
+    return false;
+    }
+
     
 
     

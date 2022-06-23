@@ -8,13 +8,13 @@ import FileOperations.*;
 
 
 public class AddHostelite extends JFrame implements ActionListener {
-    private JLabel lHostelID , lpassword, lFirstName , lSecondName , lEmail, lPhoneNumber ,
+    private JLabel lHostelID, lpassword, lFirstName, lSecondName, lEmail, lPhoneNumber,
             lRoomNo, lRoomType, lVehicleType, lVehicleNumber;
 
-    private JTextField tHostelID , tpassword, tFirstName , tSecondName , tEmail, tPhoneNumber ,
+    private JTextField tHostelID, tpassword, tFirstName, tSecondName, tEmail, tPhoneNumber,
             tRoomNo, tRoomType, tVehicleType, tVehicleNumber;
-    
-    private JButton Add , Back;
+
+    private JButton Add, Back;
 
     public AddHostelite() {
         super("Add Hostelite");
@@ -75,27 +75,42 @@ public class AddHostelite extends JFrame implements ActionListener {
         Add.addActionListener(this);
         Back.addActionListener(this);
 
-
-
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == Add) {
-
-            // getting input from the user
-            String hostelID = tHostelID.getText();
+            // now checking if the input HostelID exists or not
             String password = tpassword.getText();
             String firstName = tFirstName.getText();
             String secondName = tSecondName.getText();
+            String hostelID = tHostelID.getText();
             String email = tEmail.getText();
             String phoneNumber = tPhoneNumber.getText();
             String roomNo = tRoomNo.getText();
             String roomType = tRoomType.getText();
             String vehicleType = tVehicleType.getText();
             String vehicleNumber = tVehicleNumber.getText();
+            AdminOperations a = new AdminOperations();
 
+            
+            // getting input from the user for hostelite
+
+            if(hostelID.equals("")||password.equalsIgnoreCase("") || firstName.equalsIgnoreCase("") || secondName.equalsIgnoreCase("") || email.equalsIgnoreCase("") || phoneNumber.equalsIgnoreCase("") || roomNo.equalsIgnoreCase("") || roomType.equalsIgnoreCase("") || vehicleNumber.equalsIgnoreCase("") || vehicleType.equalsIgnoreCase("")){
+                JOptionPane.showMessageDialog(null, "Kindly Fill all text fields to add the Hostelite");
+            }
+
+            else if (a.hostelIDExists(hostelID)) {
+                JOptionPane.showMessageDialog(null, "This Hostel Id already Exists !");
+            }
+
+
+            else if(!(roomType.equalsIgnoreCase("singleseator") || roomType.equalsIgnoreCase("biseator") || roomType.equalsIgnoreCase("triseator"))){
+                JOptionPane.showMessageDialog(null , "Room Should be SingleSeator , Biseator or triseator");
+            }
+
+            else{
+            
             // making Objects
             Mess m = new Mess();
             Parking p = new Parking(vehicleType, vehicleNumber);
@@ -112,11 +127,14 @@ public class AddHostelite extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, "Hostelite Added Successfully");
 
         }
-        
+
+    }
+
         else if (e.getSource() == Back) {
             dispose();
             new Admin();
         }
     }
-    
+
 }
+    
