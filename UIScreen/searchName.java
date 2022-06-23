@@ -3,6 +3,8 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import FileOperations.*;
 
 public class searchName extends JFrame implements ActionListener {
@@ -36,15 +38,23 @@ public class searchName extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == search) {
+        if (e.getSource() == search) {
             String firstName = firstNameText.getText();
 
             AdminOperations ao = new AdminOperations();
 
-            String details = ao.searchByName(firstName);
+            ArrayList<ConcreteClasses.Hostelite> arr = ao.searchByName(firstName);
 
-            JOptionPane.showMessageDialog(null, details);
+            if (arr.size() == 0) {
+                JOptionPane.showMessageDialog(null, "No Such Name Found!");
+            } else {
+                for (int i = 0; i < arr.size(); i++) {
+                    String details = arr.get(i).toString();
+                    JOptionPane.showMessageDialog(null, details);
+                }
+            }
         }
+        
         else if(e.getSource() == back) {
             this.dispose();
             new SearchHostelite();

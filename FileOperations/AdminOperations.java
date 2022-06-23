@@ -117,13 +117,14 @@ public class AdminOperations {
     //! Searching of DATA with different Aspects 
     //* working 🎉
     
-    public String searchByName(String firstName) {
-        StringBuilder details = new StringBuilder();
-        boolean foundSome = false;
+    public ArrayList<Hostelite> searchByName(String firstName) {
+
+        ArrayList<Hostelite> a = new ArrayList<>();
+
         ObjectInputStream oo = null;
 
         if (!f.exists()) {
-            return "File Not Found No Record!";
+            return a;
         }
 
         try {
@@ -133,9 +134,8 @@ public class AdminOperations {
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
                 if (s.getFirstName().equalsIgnoreCase(firstName)) {
-                    // System.out.println("pehla naam!");
-                    details.append(s.toString());
-                    foundSome = true;
+                    a.add(s);
+                
                 }
             }
 
@@ -164,23 +164,18 @@ public class AdminOperations {
 
         }
 
-        if (!foundSome) {
-            return "No Student Found !";
-        }
 
-        String s = details.toString();
-
-        return s;
+        return a;
 
     }
 
-    public String searchByHostelID(String hostelID) {
-        StringBuilder details = new StringBuilder();
-        boolean foundSome = false;
+    public ArrayList<Hostelite> searchByHostelID(String hostelID) {
+        ArrayList<Hostelite> a = new ArrayList<>();
+    
         ObjectInputStream oo = null;
 
         if (!f.exists()) {
-            return "File Not Found No Record!";
+            return a;
         }
         try {
             oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
@@ -190,9 +185,8 @@ public class AdminOperations {
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
                 if (s.getHostelID().equalsIgnoreCase(hostelID)) {
-                    details.append(s.toString());
-                    foundSome = true;
-                    break;
+                    a.add(s);
+                    break; // as hostelID is only one!
                 }
             }
 
@@ -221,21 +215,19 @@ public class AdminOperations {
 
         }
 
-        if (!foundSome) {
-            return "No Such Hostel ID Found !";
-        }
+    
 
-        return details.toString();
+        return a;
 
     }
 
-    public String searchByYear(String year) {
-        StringBuilder details = new StringBuilder();
+    public ArrayList<Hostelite> searchByYear(String year) {
+        ArrayList<Hostelite> a = new ArrayList<>();
+
         ObjectInputStream oo = null;
-        boolean foundSome = false;
 
         if (!f.exists()) {
-            return "File Not Found No Record!";
+            return a;
         }
         try {
             oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
@@ -245,8 +237,7 @@ public class AdminOperations {
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
                 if (s.getRegistrationDateAndTime().getYear().equals(year)) {
-                    details.append(s.toString());
-                    foundSome = true;
+                    a.add(s);
                 }
             }
 
@@ -275,20 +266,18 @@ public class AdminOperations {
 
         }
 
-        if (!foundSome) {
-            return "No Data Against this year Found!";
-        }
+        
 
-        return details.toString();
+        return a;
     }
     
-    public String searchByRoomType(String roomType) {
-        StringBuilder details = new StringBuilder();
+    public ArrayList<Hostelite> searchByRoomType(String roomType) {
+        ArrayList<Hostelite> a = new ArrayList<>();
         ObjectInputStream oo = null;
-        boolean foundSome = false;
+        
 
         if (!f.exists()) {
-            return "File Not Found No Record!";
+            return a;
         }
         try {
             oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
@@ -298,8 +287,7 @@ public class AdminOperations {
                 // Reading object is below
                 Hostelite s = (Hostelite) oo.readObject();
                 if (s.getRoom().getRoomType().equalsIgnoreCase(roomType)) {
-                    details.append(s.toString());
-                    foundSome = true;
+                    a.add(s);
                 }
             }
 
@@ -328,11 +316,8 @@ public class AdminOperations {
 
         }
 
-        if (!foundSome) {
-            return "No Such Department Found !";
-        }
 
-        return details.toString();
+        return a;
     }
 
     

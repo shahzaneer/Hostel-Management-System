@@ -23,11 +23,14 @@ public class ViewAllProfiles extends JFrame implements ActionListener {
     
         profiles = new JButton("Profiles");
         back = new JButton("Back");
-        this.add(back);
+        
         this.add(profiles);
+        this.add(back);
 
-        back.addActionListener(this);
+
         profiles.addActionListener(this);
+        back.addActionListener(this);
+
 
         
 

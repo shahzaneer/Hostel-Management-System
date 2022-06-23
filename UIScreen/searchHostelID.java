@@ -3,6 +3,8 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import FileOperations.*;
 
 public class searchHostelID extends JFrame implements ActionListener {
@@ -40,9 +42,17 @@ public class searchHostelID extends JFrame implements ActionListener {
             AdminOperations ao = new AdminOperations();
             String hostelID = hostelIDText.getText();
 
-            String details = ao.searchByHostelID(hostelID);
+            ArrayList<ConcreteClasses.Hostelite> arr = ao.searchByHostelID(hostelID);
 
-            JOptionPane.showMessageDialog(null, details);
+            if (arr.size() == 0) {
+                JOptionPane.showMessageDialog(null, "No Such Hostel ID Found!");
+            }
+            else {
+                for (int i = 0; i < arr.size(); i++) {
+                    String details = arr.get(i).toString();
+                    JOptionPane.showMessageDialog(null,details);
+                }
+            }
         }
         else if(e.getSource() == back) {
             this.dispose();

@@ -3,6 +3,8 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import FileOperations.*;
 
 public class searchYear extends JFrame implements ActionListener {
@@ -40,11 +42,19 @@ public class searchYear extends JFrame implements ActionListener {
             AdminOperations ao = new AdminOperations();
             String year = yearText.getText();
 
-            String details = ao.searchByYear(year);
+            ArrayList<ConcreteClasses.Hostelite> arr = ao.searchByYear(year);
 
-            JOptionPane.showMessageDialog(null, details);
-            
+            if (arr.size() == 0) {
+                JOptionPane.showMessageDialog(null, "No Record Found!");
+            }
+            else {
+                for (int i = 0; i < arr.size(); i++) {
+                    String details = arr.get(i).toString();
+                    JOptionPane.showMessageDialog(null,details);
+                }
+            }
         }
+        
         else if(e.getSource() == back) {
             this.dispose();
             new SearchHostelite();

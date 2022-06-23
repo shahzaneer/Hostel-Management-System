@@ -3,6 +3,8 @@ package UIScreen;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import FileOperations.*;
 
 public class searchRoomType extends JFrame implements ActionListener {
@@ -40,9 +42,17 @@ public class searchRoomType extends JFrame implements ActionListener {
             String roomType = roomTypeText.getText();
             AdminOperations ao = new AdminOperations();
 
-            String details = ao.searchByRoomType(roomType);
+            ArrayList<ConcreteClasses.Hostelite> arr = ao.searchByRoomType(roomType);
 
-            JOptionPane.showMessageDialog(null, details);
+            if (arr.size() == 0) {
+                JOptionPane.showMessageDialog(null, "No Such Student Found!");
+            }
+            else {
+                for (int i = 0; i < arr.size(); i++) {
+                    String details = arr.get(i).toString();
+                    JOptionPane.showMessageDialog(null,details);
+                }
+            }
         }
         else if(e.getSource() == back) {
             this.dispose();
