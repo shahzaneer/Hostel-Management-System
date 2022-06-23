@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Admin extends JFrame implements ActionListener {
-    private JButton addHostelite,readAllHostelites, searchHostelite, updateHostelite, deleteHostelite, billInfo, totalIncome,  complaints;
+    private JButton addHostelite,readAllHostelites, searchHostelite, updateHostelite, deleteHostelite, billInfo, totalIncome,  complaints , forgotPasswords;
     private JButton back;
 
     public Admin() {
@@ -13,7 +13,7 @@ public class Admin extends JFrame implements ActionListener {
         this.setForeground(Color.BLACK);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout(9, 1));
+        this.setLayout(new GridLayout(10, 1));
 
         addHostelite = new JButton("Add Profile");
         readAllHostelites = new JButton("View All Hostelites");
@@ -23,7 +23,9 @@ public class Admin extends JFrame implements ActionListener {
         billInfo = new JButton("Bill Info");
         totalIncome = new JButton("Total Income");
         complaints = new JButton("See Complaints");
+        forgotPasswords = new JButton("Get Passwords");
         back = new JButton("Back");
+
 
         this.add(addHostelite);
         this.add(readAllHostelites);
@@ -33,6 +35,7 @@ public class Admin extends JFrame implements ActionListener {
         this.add(billInfo);
         this.add(totalIncome);
         this.add(complaints);
+        this.add(forgotPasswords);
         this.add(back);
 
         addHostelite.addActionListener(this);
@@ -43,6 +46,7 @@ public class Admin extends JFrame implements ActionListener {
         billInfo.addActionListener(this);
         totalIncome.addActionListener(this);
         complaints.addActionListener(this);
+        forgotPasswords.addActionListener(this);
         back.addActionListener(this);
 
 
@@ -58,12 +62,6 @@ public class Admin extends JFrame implements ActionListener {
         else if (e.getSource() == readAllHostelites) {
             this.dispose();
             new ViewAllProfiles();
-            
-        
-
-            
-
-
 
         }
         else if(e.getSource() == searchHostelite) {
@@ -90,6 +88,11 @@ public class Admin extends JFrame implements ActionListener {
         else if (e.getSource() == complaints) {
             this.dispose();
             new Complaints();
+        }
+
+        else if (e.getSource() == forgotPasswords) {
+            this.dispose();
+            new forgotPassword();
         }
         
         else if(e.getSource() == back) {
