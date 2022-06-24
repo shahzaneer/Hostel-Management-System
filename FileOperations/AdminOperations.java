@@ -273,7 +273,6 @@ public class AdminOperations {
     public ArrayList<Hostelite> searchByRoomType(String roomType) {
         ArrayList<Hostelite> a = new ArrayList<>();
         ObjectInputStream oo = null;
-        
 
         if (!f.exists()) {
             return a;
@@ -315,9 +314,58 @@ public class AdminOperations {
 
         }
 
+        return a;
+    }
+
+    public ArrayList<Hostelite> searchByVehicleType(String vehicleType) {
+        ArrayList<Hostelite> a = new ArrayList<>();
+        ObjectInputStream oo = null;
+        
+
+        if (!f.exists()) {
+            return a;
+        }
+        try {
+            oo = new ObjectInputStream(new FileInputStream("hostelites.ser"));
+
+            while (true) {
+
+                // Reading object is below
+                Hostelite s = (Hostelite) oo.readObject();
+                if (s.getParking().getVehicleType().equalsIgnoreCase(vehicleType)) {
+                    a.add(s);
+                }
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        catch (EOFException e) {
+
+        }
+
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                oo.close();
+
+            } catch (IOException e) {
+            }
+
+        }
+
 
         return a;
     }
+
 
     
     //! UPDATION of DATA with different Aspects

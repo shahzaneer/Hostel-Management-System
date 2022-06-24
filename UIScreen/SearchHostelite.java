@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class SearchHostelite extends JFrame implements ActionListener {
-    private JButton searchName, searchHostelID, searchYear, searchRoomType;
+    private JButton searchName, searchHostelID, searchYear, searchRoomType , searchVehicle;
     private JButton back;
 
     public SearchHostelite() {
@@ -20,18 +20,21 @@ public class SearchHostelite extends JFrame implements ActionListener {
         searchHostelID = new JButton("Search by Hostel ID");
         searchYear = new JButton("Search by Year");
         searchRoomType = new JButton("Search by Room Type");
+        searchVehicle = new JButton("Search By Vehicle Type");
         back = new JButton("Back");
 
         this.add(searchName);
         this.add(searchHostelID);
         this.add(searchYear);
         this.add(searchRoomType);
+        this.add(searchVehicle);
         this.add(back);
 
         searchName.addActionListener(this);
         searchHostelID.addActionListener(this);
         searchYear.addActionListener(this);
         searchRoomType.addActionListener(this);
+        searchVehicle.addActionListener(this);
         back.addActionListener(this);
 
 
@@ -44,6 +47,7 @@ public class SearchHostelite extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if(e.getSource() == searchName) {
             this.dispose();
             new searchName();
@@ -56,9 +60,13 @@ public class SearchHostelite extends JFrame implements ActionListener {
             this.dispose();
             new searchYear();
         }
-        else if(e.getSource() == searchRoomType) {
+        else if (e.getSource() == searchRoomType) {
             this.dispose();
             new searchRoomType();
+        }
+        else if(e.getSource() == searchVehicle){
+            this.dispose();
+            new searchVehicleType();
         }
         else if(e.getSource() == back) {
             this.dispose();

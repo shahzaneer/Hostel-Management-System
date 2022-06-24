@@ -105,10 +105,14 @@ public class AddHostelite extends JFrame implements ActionListener {
             }
 
 
-            else if(!(roomType.equalsIgnoreCase("singleseator") || roomType.equalsIgnoreCase("biseator") || roomType.equalsIgnoreCase("triseator"))){
-                JOptionPane.showMessageDialog(null , "Room Should be SingleSeator , Biseator or triseator");
+            else if (!(roomType.equalsIgnoreCase("singleseator") || roomType.equalsIgnoreCase("biseator")
+                    || roomType.equalsIgnoreCase("triseator"))) {
+                JOptionPane.showMessageDialog(null, "Room Should be SingleSeator , Biseator or triseator");
             }
 
+            else if(!(vehicleType.equalsIgnoreCase("car") || vehicleType.equalsIgnoreCase("bike") || vehicleType.equalsIgnoreCase("bicycle") || vehicleType.equalsIgnoreCase("null"))){
+                JOptionPane.showMessageDialog(null, "Enter Correct Vehicle Type. Car , Bike or Bicycle");
+            }
             else{
             
             // making Objects
